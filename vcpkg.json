@@ -1,0 +1,8 @@
+{
+  "name": "cpp-init",
+  "version-string": "0.1.0",
+  "description": "provides cmake boilerplate for a c++ project.",
+  "dependencies": [
+      "fmt"
+  ]
+}

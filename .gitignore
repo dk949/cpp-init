@@ -1,0 +1,4 @@
+build
+docs
+vcpkg
+vcpkg_installed/
