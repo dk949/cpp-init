@@ -22,4 +22,4 @@ project](https://github.com/lefticus/cpp_starter_project).
 
 ## Usage
 
-See the wiki.
+See the [wiki](https://github.com/dk949/cpp-init/wiki).
