@@ -2,3 +2,4 @@ build
 docs
 vcpkg
 vcpkg_installed/
+src/compile_commands.json
