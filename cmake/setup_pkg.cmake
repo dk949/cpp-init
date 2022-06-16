@@ -62,6 +62,18 @@ if (_err)
     message(FATAL_ERROR "Could not get project description from manifest: ${_err}")
 endif ()
 
+# get url from manifest.
+# cmake-format: off
+string(
+    JSON THIS_PROJECT_HOMEPAGE_URL
+    ERROR_VARIABLE _err
+    GET ${_manifest} "$url"
+)
+# cmake-format: on
+if (_err)
+    message(FATAL_ERROR "Could not get project url from manifest: ${_err}")
+endif ()
+
 
 unset(_err)
 unset(_version_types)

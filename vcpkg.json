@@ -3,6 +3,7 @@
   "version-string": "0.1.0",
   "description": "provides cmake boilerplate for a c++ project.",
   "dependencies": [
-      "fmt"
-  ]
+    "fmt"
+  ],
+  "$url": "https://github.com/dk949/cpp-init"
 }
