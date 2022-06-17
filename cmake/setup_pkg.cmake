@@ -65,7 +65,7 @@ endif ()
 # get url from manifest.
 # cmake-format: off
 string(
-    JSON THIS_PROJECT_HOMEPAGE_URL
+    JSON _url
     ERROR_VARIABLE _err
     GET ${_manifest} "$url"
 )
@@ -74,6 +74,9 @@ if (_err)
     message(FATAL_ERROR "Could not get project url from manifest: ${_err}")
 endif ()
 
+if(NOT ${_url} STREQUAL "")
+    set (THIS_PROJECT_HOMEPAGE_URL HOMEPAGE_URL ${_url})
+endif()
 
 unset(_err)
 unset(_version_types)
