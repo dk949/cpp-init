@@ -53,7 +53,7 @@ endif ()
 # get description from manifest.
 # cmake-format: off
 string(
-    JSON THIS_PROJECT_DESCRIPTION
+    JSON _desc
     ERROR_VARIABLE _err
     GET ${_manifest} "description"
 )
@@ -61,6 +61,11 @@ string(
 if (_err)
     message(FATAL_ERROR "Could not get project description from manifest: ${_err}")
 endif ()
+
+if(NOT ${_desc} STREQUAL "")
+    set (THIS_PROJECT_DESCRIPTION DESCRIPTION ${_desc})
+endif()
+
 
 # get url from manifest.
 # cmake-format: off
@@ -80,3 +85,5 @@ endif()
 
 unset(_err)
 unset(_version_types)
+unset(_desc)
+unset(_url)
