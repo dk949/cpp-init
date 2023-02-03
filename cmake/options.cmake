@@ -28,7 +28,7 @@ set(SANITIZER_LIST "address,leak,undefined" CACHE STRING "List of sanitizers to 
 
 
 # Docs
-option(ENABLE_DOXYGEN "Enable doxygen doc builds of source" OFF)
+option(ENABLE_DOXYGEN "Enable doxygen doc builds of source" ON)
 
 
 

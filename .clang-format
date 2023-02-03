@@ -79,7 +79,7 @@ AlwaysBreakAfterReturnType: None
 # BraceWrapping: [] # NOTE: For BreakBeforeBraces: Custom
 BreakAfterJavaFieldAnnotations: true
 IncludeCategories: # NOTE: order: user includes -> system includes -> standard includes
-  - Regex: "<[a-z]+>"
+  - Regex: "<[a-z_]+>"
     Priority: 3
   - Regex: "<.+>"
     Priority: 2
@@ -98,7 +98,7 @@ SortIncludes: CaseInsensitive
 SpaceAfterTemplateKeyword: false
 
 # clang-format 5
-AlignEscapedNewlines: Right
+AlignEscapedNewlines: Left
 BreakConstructorInitializers: BeforeComma
 CompactNamespaces: false
 FixNamespaceComments: true # NOTE: see ShortNamespaceLines
