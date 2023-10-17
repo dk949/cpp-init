@@ -22,4 +22,17 @@ project](https://github.com/lefticus/cpp_starter_project).
 
 ## Usage
 
-See the [wiki](https://github.com/dk949/cpp-init/wiki).
+Run the following commands to get started, more info available in the
+[wiki](https://github.com/dk949/cpp-init/wiki).
+
+```sh
+git clone "https://github.com/Microsoft/vcpkg.git"
+./vcpkg/bootstrap-vcpkg.sh # -disableMetrics
+./vcpkg/vcpkg install
+
+cmake -B build
+
+cmake --build build
+
+./build/bin/cpp_init
+```
