@@ -78,8 +78,10 @@ AlignConsecutiveDeclarations: None
 AlwaysBreakAfterReturnType: None
 # BraceWrapping: [] # NOTE: For BreakBeforeBraces: Custom
 BreakAfterJavaFieldAnnotations: true
-IncludeCategories: # NOTE: order: user includes -> system includes -> standard includes
+IncludeCategories: # NOTE: order: user includes -> system includes -> Qt includes -> standard includes
   - Regex: "<[a-z_]+>"
+    Priority: 4
+  - Regex: "<Q[a-zA-Z_]+>"
     Priority: 3
   - Regex: "<.+>"
     Priority: 2
@@ -148,7 +150,7 @@ IndentCaseBlocks: false
 IndentExternBlock: NoIndent
 InsertTrailingCommas: Wrapped
 ObjCBreakBeforeNestedBlockParam: false
-WhitespaceSensitiveMacros: []
+WhitespaceSensitiveMacros: [Q_OBJECT, Q_PROPERTY]
 
 # clang-format 12
 AttributeMacros: []
