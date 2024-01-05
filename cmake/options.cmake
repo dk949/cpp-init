@@ -4,6 +4,7 @@
 # Targets
 set(EXE_NAME ${CMAKE_PROJECT_NAME} CACHE STRING "Name of the main executable")
 set(OBJLIB_NAME ${CMAKE_PROJECT_NAME}_objlib CACHE STRING "Name of the object library (used for tests)")
+set(TEST_NAME ${CMAKE_PROJECT_NAME}_test CACHE STRING "Name of the test executable")
 set(DOXYFILE_SUFFIX ${CMAKE_PROJECT_NAME}_docs CACHE STRING "Documentation target")
 
 # main file
@@ -16,6 +17,8 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib CACHE STRING "library
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin CACHE STRING "executable location")
 
 
+# Tests
+option(BUILD_TESTING "Build the tests" ON)
 
 # Analysers
 option(ENABLE_CPPCHECK "Enable cppcheck" OFF)

@@ -27,12 +27,18 @@ Run the following commands to get started, more info available in the
 
 ```sh
 git clone "https://github.com/Microsoft/vcpkg.git"
-./vcpkg/bootstrap-vcpkg.sh # -disableMetrics
+./vcpkg/bootstrap-vcpkg.sh -disableMetrics
 ./vcpkg/vcpkg install
 
 cmake -B build
 
 cmake --build build
 
+# run the executable
 ./build/bin/cpp_init
+
+# run the tests
+./build/bin/cpp_init_test
+#or
+ctest --test-dir build/tests
 ```

@@ -82,10 +82,9 @@ endmacro()
 
 
 macro(add_dummy_source source_files)
-    if(${source_files})
-        return() # don't add a dummy source if
+    if(NOT ${source_files})
+        set(fname ${CMAKE_BINARY_DIR}/dummy.cpp)
+        file(WRITE ${fname} "[[maybe_unused]] static int i;")
+        set(${source_files} ${fname})
     endif()
-    set(fname ${CMAKE_BINARY_DIR}/dummy.cpp)
-    file(WRITE ${fname} "[[maybe_unused]] static int i;")
-    set(${source_files} ${fname})
 endmacro()
