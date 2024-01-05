@@ -6,13 +6,12 @@ int main() {
                "\n"
                "version v{}\n"
                "\n"
-               "Try editing the source code in {}\n"
+               "Try editing the source code in ./src\n"
                "\n"
                "Find more info at {}/wiki\n"
                "\n",
         project::name,
         project::description,
         project::version::full,
-        project::dirs::src,
         project::url);
 }
