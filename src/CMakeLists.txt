@@ -1,13 +1,17 @@
 link_compile_commands()
 
 file(GLOB_RECURSE SOURCE_FILES "${CMAKE_SOURCE_DIR}/src/*.cpp")
-file(GLOB_RECURSE HEADER_FILES "${CMAKE_SOURCE_DIR}/src/*.hpp")
+list(REMOVE_ITEM SOURCE_FILES ${MAIN})
+add_dummy_source(SOURCE_FILES)
 
-add_executable(${EXE_NAME} ${SOURCE_FILES} ${HEADER_FILES})
-target_include_directories(${EXE_NAME} PRIVATE "${CMAKE_BINARY_DIR}/project_config/include")
+add_library(${OBJLIB_NAME} OBJECT ${SOURCE_FILES})
+target_include_directories(${OBJLIB_NAME} PUBLIC "${CMAKE_BINARY_DIR}/project_config/include")
 
 find_package(fmt CONFIG REQUIRED)
-target_link_libraries(${EXE_NAME} PRIVATE fmt::fmt)
+target_link_libraries(${OBJLIB_NAME} PUBLIC fmt::fmt)
 
-enable_sanitizers(${EXE_NAME})
-set_target_warnings(${EXE_NAME})
+enable_sanitizers(${OBJLIB_NAME} PUBLIC)
+set_target_warnings(${OBJLIB_NAME} PUBLIC)
+
+add_executable(${EXE_NAME} ${MAIN})
+target_link_libraries(${EXE_NAME} PRIVATE ${OBJLIB_NAME})

@@ -2,7 +2,9 @@
 #
 # https://github.com/lefticus/cppbestpractices/blob/master/02-Use_the_Tools_Available.md
 
-function (set_target_warnings project_name)
+include(${CMAKE_SOURCE_DIR}/cmake/misc.cmake)
+function (set_target_warnings project_name #[[access]])
+    optional_args(acc DEFAULTS "PRIVATE" ARGS ${ARGN})
     set(MSVC_WARNINGS
         /W4 # Baseline reasonable warnings
         /w14242 # 'identifier': conversion from 'type1' to 'type1', possible loss of data
@@ -78,11 +80,11 @@ function (set_target_warnings project_name)
     )
 
     if (MSVC)
-        target_compile_options(${project_name} PRIVATE ${MSVC_WARNINGS})
+        target_compile_options(${project_name} ${acc_0} ${MSVC_WARNINGS})
     elseif (CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
-        target_compile_options(${project_name} PRIVATE ${CLANG_WARNINGS})
+        target_compile_options(${project_name} ${acc_0} ${CLANG_WARNINGS})
     elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-        target_compile_options(${project_name} PRIVATE ${GCC_WARNINGS})
+        target_compile_options(${project_name} ${acc_0} ${GCC_WARNINGS})
     else ()
         message(AUTHOR_WARNING "No compiler warnings set for '${CMAKE_CXX_COMPILER_ID}' compiler.")
     endif ()

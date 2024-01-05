@@ -3,8 +3,11 @@
 
 # Targets
 set(EXE_NAME ${CMAKE_PROJECT_NAME} CACHE STRING "Name of the main executable")
+set(OBJLIB_NAME ${CMAKE_PROJECT_NAME}_objlib CACHE STRING "Name of the object library (used for tests)")
 set(DOXYFILE_SUFFIX ${CMAKE_PROJECT_NAME}_docs CACHE STRING "Documentation target")
 
+# main file
+set(MAIN "${CMAKE_SOURCE_DIR}/src/main.cpp" CACHE STRING "File containing the main function")
 
 
 # Artifacts
