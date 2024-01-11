@@ -66,7 +66,7 @@ jobs:
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
       with:
-        key: ${{ matrix.os }}-${{ matrix.c_compiler }}-${{ matrix.build_type }}-ccache
+        key: ${{ matrix.os }}-${{ matrix.c_compiler }}-${{ matrix.build_type }}
 
     - name: Configure vcpkg
       if: steps.cache-vcpkg.outputs.cache-hit != 'true'
