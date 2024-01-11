@@ -61,7 +61,12 @@ jobs:
         path: |
           ${{ github.workspace }}/vcpkg
           ${{ github.workspace }}/vcpkg_installed
-        key: ${{ matrix.os }}-${{ matrix.c_compiler }}${{ matrix.build_type }}-vcpkg
+        key: ${{ matrix.os }}-${{ matrix.c_compiler }}-${{ matrix.build_type }}-vcpkg
+
+    - name: ccache
+      uses: hendrikmuhs/ccache-action@v1.2
+      with:
+        key: ${{ matrix.os }}-${{ matrix.c_compiler }}-${{ matrix.build_type }}-ccache
 
     - name: Configure vcpkg
       if: steps.cache-vcpkg.outputs.cache-hit != 'true'
@@ -82,6 +87,7 @@ jobs:
         -DENABLE_DOXYGEN=NO
         -DWARNINGS_AS_ERRORS=YES
         -DCMAKE_EXPORT_COMPILE_COMMANDS=NO
+        -DENABLE_CACHE=YES
         -S ${{ github.workspace }}
 
     - name: Build
