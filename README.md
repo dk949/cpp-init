@@ -1,5 +1,7 @@
 # init cpp
 
+[![CMake build and test](https://github.com/dk949/cpp-init/actions/workflows/cmake-multi-platform.yml/badge.svg)](https://github.com/dk949/cpp-init/actions/workflows/cmake-multi-platform.yml)
+
 cmake boilerplate for a C++ project. Originally a fork of [cpp starter
 project](https://github.com/lefticus/cpp_starter_project).
 
