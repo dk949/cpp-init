@@ -5,20 +5,12 @@ function (_enable_cache)
         return()
     endif ()
 
-    set(CACHE_PROGRAM
-        "ccache"
-        CACHE STRING "Compiler cache to be used"
-    )
-
-    find_program(_cahce_bin ${CACHE_PROGRAM})
-    if (_cahce_bin)
+    find_program(cache_bin ${CACHE_PROGRAM})
+    if (cache_bin)
         message(STATUS "${CACHE_PROGRAM} found and enabled")
-        set(CMAKE_CXX_COMPILER_LAUNCHER ${_cahce_bin})
+        set(CMAKE_CXX_COMPILER_LAUNCHER ${cache_bin} CACHE STRING "cmake compiler launcher")
     else ()
-        message(
-            WARNING
-                "${CACHE_PROGRAM} is enabled but was not found. Not using it"
-        )
+        message(WARNING "${CACHE_PROGRAM} is enabled but was not found. Not using it")
     endif ()
 endfunction ()
 

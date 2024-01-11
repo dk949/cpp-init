@@ -45,6 +45,7 @@ option(WARNINGS_AS_ERRORS "Treat compiler warnings as errors" ON)
 
 # Caching
 option(ENABLE_CACHE "Enable cache if available" OFF)
+set(CACHE_PROGRAM "ccache" CACHE STRING "Compiler cache to be used")
 
 
 
