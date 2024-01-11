@@ -85,11 +85,7 @@ jobs:
         -S ${{ github.workspace }}
 
     - name: Build
-      run: >
-        cmake
-              --build ${{ steps.strings.outputs.build-output-dir }}
-              --config ${{ matrix.build_type }}
-              -j
+      run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }} -j
 
     - name: Test
       working-directory: ${{ steps.strings.outputs.build-output-dir }}/tests
