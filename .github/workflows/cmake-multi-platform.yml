@@ -48,6 +48,28 @@ jobs:
       shell: bash
       run: |
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
+        if [ "$RUNNER_OS" = "Linux" ]; then
+          echo "vcpkg-setup-file=bootstrap-vcpkg.sh" >> "$GITHUB_OUTPUT"
+        elif [ "$RUNNER_OS" = "Windows" ]; then
+          echo "vcpkg-setup-file=bootstrap-vcpkg.bat" >> "$GITHUB_OUTPUT"
+        fi
+
+    - name: Cache vcpkg
+      id: cache-vcpkg
+      uses: actions/cache@v3
+      with:
+        path: |
+          ${{ github.workspace }}/vcpkg
+          ${{ github.workspace }}/vcpkg_installed
+        key: ${{ runner.os }}-${{ matrix.build_type }}-vcpkg
+
+    - name: Configure vcpkg
+      if: steps.cache-vcpkg.outputs.cache-hit != 'true'
+      working-directory: ${{ github.workspace }}
+      run: |
+        git clone "https://github.com/Microsoft/vcpkg.git"
+        ./vcpkg/${{ steps.strings.outputs.vcpkg-setup-file }} -disableMetrics
+        ./vcpkg/vcpkg install
 
     - name: Configure CMake
       run: >
