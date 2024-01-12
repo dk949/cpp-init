@@ -78,16 +78,11 @@ jobs:
 
     - name: Configure CMake
       run: >
-        cmake -B ${{ steps.strings.outputs.build-output-dir }}
+        cmake --preset ci
+        -B ${{ steps.strings.outputs.build-output-dir }}
         -DCMAKE_CXX_COMPILER=${{ matrix.cxx_compiler }}
         -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
         -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
-        -DBUILD_TESTING=YES
-        -DENABLE_SANITIZERS=YES
-        -DENABLE_DOXYGEN=NO
-        -DWARNINGS_AS_ERRORS=YES
-        -DCMAKE_EXPORT_COMPILE_COMMANDS=NO
-        -DENABLE_CACHE=YES
         -S ${{ github.workspace }}
 
     - name: Build
@@ -95,4 +90,4 @@ jobs:
 
     - name: Test
       working-directory: ${{ steps.strings.outputs.build-output-dir }}/tests
-      run: ctest --build-config ${{ matrix.build_type }}
+      run: ctest --build-config ${{ matrix.build_type }} --output-on-failure

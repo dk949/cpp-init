@@ -11,7 +11,6 @@ work to adapt it for use with C (or any other language).
 _NOTE 2:_ The minimum recommended standard is C++17 (default since GCC 11 and
 Clang 16). The minimum supported standard is C++11 (though this only matters for
 certain warnings).
-
 ## Dependencies
 
 ### Required
@@ -39,7 +38,7 @@ git clone "https://github.com/Microsoft/vcpkg.git"
 ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
 ./vcpkg/vcpkg install
 
-cmake -B build
+cmake --preset make # other presets are default and ninja
 
 cmake --build build
 

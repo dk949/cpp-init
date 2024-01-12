@@ -1,0 +1,46 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "default",
+      "displayName": "Default Config",
+      "description": "Default build using Unix Makefiles generator",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "ENABLE_CACHE": true,
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true
+      }
+    },
+    {
+      "name": "make",
+      "displayName": "Makefile Config",
+      "description": "Default build using Unix Makefiles generator",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {}
+    },
+    {
+      "name": "ninja",
+      "displayName": "Ninja Config",
+      "description": "Default build using Unix Makefiles generator",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {}
+    },
+    {
+      "name": "ci",
+      "displayName": "CI Config",
+      "description": "Configuration made to be ran in CI",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "BUILD_TESTING": true,
+        "ENABLE_SANITIZERS": true,
+        "ENABLE_DOXYGEN": false,
+        "WARNINGS_AS_ERRORS": true,
+        "CMAKE_EXPORT_COMPILE_COMMANDS": false,
+        "ENABLE_CACHE": true
+      }
+    }
+  ]
+}
