@@ -3,7 +3,13 @@
 # https://github.com/lefticus/cppbestpractices/blob/master/02-Use_the_Tools_Available.md
 
 include(${CMAKE_SOURCE_DIR}/cmake/misc.cmake)
+
 function (set_target_warnings project_name #[[access]])
+    macro (gnu_add_no_error warn_list warn)
+        list(APPEND ${warn_list} "-W${warn}")
+        list(APPEND ${warn_list} "-Wno-error=${warn}")
+    endmacro()
+
     optional_args(acc DEFAULTS "PRIVATE" ARGS ${ARGN})
     set(MSVC_WARNINGS
         /W4 # Baseline reasonable warnings
@@ -47,18 +53,24 @@ function (set_target_warnings project_name #[[access]])
         -Wnull-dereference # warn if a null dereference is detected
         -Wdouble-promotion # warn if float is implicit promoted to double
         -Wformat=2 # warn on security issues around functions that format output (ie printf)
-
-        # Warnings which are not errors even when -Werror is on
-        -Wno-error=unused-parameter
-        -Wno-error=unused-but-set-parameter
-        -Wno-error=unused-variable
-        -Wno-error=unused-but-set-variable
-        -Wno-error=unused-const-variable
-        -Wno-error=unused-function
-        -Wno-error=unused-label
-        -Wno-error=unused-local-typedefs
-        -Wno-error=unused-value
+        -Wswitch-default # warn if switch is missing default
+        -Wswitch-enum # warn if not all enum members are covered by the switch, even with default specified
+        -Wctad-maybe-unsupported # CTAD guides were not provided (CTAD may break with other compilers)
+        -Weffc++ # supported by clang but only meaningful in gcc. Enforce some EMC++ guidelines
+        -Wimplicit-fallthrough # implicit fallthrough for cases
+        -Wmisleading-indentation # warn if indentation implies blocks where blocks do not exist
+        -Wsuggest-override # suggest virtual function is marked override if it overrides something
     )
+    # Warnings which are not errors even when -Werror is on
+    gnu_add_no_error(COMMON_WARNINGS unused-but-set-parameter)
+    gnu_add_no_error(COMMON_WARNINGS unused-but-set-variable)
+    gnu_add_no_error(COMMON_WARNINGS unused-const-variable)
+    gnu_add_no_error(COMMON_WARNINGS unused-function)
+    gnu_add_no_error(COMMON_WARNINGS unused-label)
+    gnu_add_no_error(COMMON_WARNINGS unused-local-typedefs)
+    gnu_add_no_error(COMMON_WARNINGS unused-macros)
+    gnu_add_no_error(COMMON_WARNINGS unused-parameter)
+    gnu_add_no_error(COMMON_WARNINGS unused-variable)
 
     if (WARNINGS_AS_ERRORS)
         set(COMMON_WARNINGS ${COMMON_WARNINGS} -Werror)
@@ -67,17 +79,24 @@ function (set_target_warnings project_name #[[access]])
 
     set(GCC_WARNINGS
         ${COMMON_WARNINGS}
-        -Wmisleading-indentation # warn if indentation implies blocks where blocks do not exist
         -Wduplicated-cond # warn if if / else chain has duplicated conditions
         -Wduplicated-branches # warn if if / else branches have duplicated code
         -Wlogical-op # warn about logical operations being used where bitwise were probably wanted
         -Wuseless-cast # warn if you perform a cast to the same type
+        -Wnoexcept # noextept(func()) is false, because func is not noexcept, but it can be
+        -Wunused-const-variable=1 # using level 1, because default (set above) also accounts for headers
     )
 
     set(CLANG_WARNINGS
         ${COMMON_WARNINGS}
-        -Wno-error=unused-private-field
+        -Wused-but-marked-unused # this is only for [[gnu::unused]], not [[maybe_unused]]
     )
+    gnu_add_no_error(CLANG_WARNINGS unused-private-field)
+    gnu_add_no_error(CLANG_WARNINGS unused-comparison)
+    gnu_add_no_error(CLANG_WARNINGS unused-exception-parameter)
+    gnu_add_no_error(CLANG_WARNINGS unused-lambda-capture)
+    gnu_add_no_error(CLANG_WARNINGS unused-member-function)
+    gnu_add_no_error(CLANG_WARNINGS unused-template)
 
     if (MSVC)
         target_compile_options(${project_name} ${acc_0} ${MSVC_WARNINGS})
