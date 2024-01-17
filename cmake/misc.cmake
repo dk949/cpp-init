@@ -33,7 +33,7 @@ do_thing() # ERROR
 ```
 
 ]]
-function(UNSET_FUNCTION func)
+function(unset_function func)
     function(${func})
         message(FATAL_ERROR "Calling a deleted function \"${CMAKE_CURRENT_FUNCTION}\"")
     endfunction()
@@ -81,6 +81,9 @@ endmacro()
 
 
 
+#[[
+adds a dummy c++ file and sets `source_files` to the path to this file
+]]
 macro(add_dummy_source source_files)
     if(NOT ${source_files})
         set(fname ${CMAKE_BINARY_DIR}/dummy.cpp)
