@@ -56,7 +56,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 
 # Compile commands
-set(CMAKE_EXPORT_COMPILE_COMMANDS OFF)
+option(CMAKE_EXPORT_COMPILE_COMMANDS "generate compile_commands.json" OFF)
 
 
 
