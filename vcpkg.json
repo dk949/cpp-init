@@ -4,7 +4,8 @@
   "description": "provides cmake boilerplate for a c++ project.",
   "dependencies": [
     "fmt",
-    "catch2"
+    "catch2",
+    "ms-gsl"
   ],
   "$url": "https://github.com/dk949/cpp-init"
 }
