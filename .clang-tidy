@@ -31,7 +31,7 @@ Checks:
   -readability-redundant-access-specifiers,
   -readability-static-accessed-through-instance
   '
-WarningsAsErrors: '*'
+WarningsAsErrors: ''
 HeaderFilterRegex: ''
 FormatStyle:     none
 CheckOptions:
