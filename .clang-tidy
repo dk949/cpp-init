@@ -54,6 +54,12 @@ CheckOptions:
     value: true
   - key: readability-implicit-bool-conversion.AllowPointerConditions
     value: true
+  - key: google-runtime-int.UnsignedTypePrefix
+    value: std::uint
+  - key: google-runtime-int.SignedTypePrefix
+    value: std::int
+  - key: google-runtime-int.TypeSuffix
+    value: _t
 
   # Naming convention
   - key: readability-identifier-naming.ConceptCase
