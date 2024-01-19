@@ -21,6 +21,7 @@ Checks:
   misc-*,
   -misc-non-private-member-variables-in-classes,
   -misc-unused-alias-decls,
+  -misc-no-recursion,
   modernize-*,
   -modernize-use-trailing-return-type,
   performance-*,
