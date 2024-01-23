@@ -23,6 +23,7 @@ option(BUILD_TESTING "Build the tests" ON)
 # Analysers
 option(ENABLE_CPPCHECK "Enable cppcheck" OFF)
 option(ENABLE_CLANG_TIDY "Enable clang-tidy" ON)
+option(ENABLE_CLANG_TIDY_FULL "Enable more clang-tidy checks (takes more time)" OFF)
 option(ENABLE_INCLUDE_WHAT_YOU_USE "Enable include-what-you-use" OFF)
 
 

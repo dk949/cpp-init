@@ -26,7 +26,41 @@ _enable_stat(
     --inline-suppr
     --inconclusive
 )
-_enable_stat(clang-tidy -extra-arg=-Wno-unknown-warning-option)
+
+if (ENABLE_CLANG_TIDY_FULL)
+    if(NOT ENABLE_CLANG_TIDY)
+        message(AUTHOR_WARNING "Using ENABLE_CLANG_TIDY_FULL without ENABLE_CLANG_TIDY, is meaningless")
+    else()
+        set(full_check_list [[
+bugprone-infinite-loop,
+bugprone-reserved-identifier,
+bugprone-stringview-nullptr,
+bugprone-suspicious-string-compare,
+bugprone-use-after-move,
+misc-confusable-identifiers,
+misc-const-correctness,
+misc-definitions-in-headers,
+misc-unused-alias-decls,
+misc-unused-using-decls,
+modernize-macro-to-enum,
+readability-container-size-empty,
+readability-identifier-naming,
+cppcoreguidelines-owning-memory,
+readability-uppercase-literal-suffix,
+readability-non-const-parameter,
+]])
+        string(REPLACE "\n" "" full_check_list ${full_check_list})
+
+        message(STATUS "enabled additional clang tidy checks")
+    endif()
+endif()
+_enable_stat(
+    clang-tidy
+    --extra-arg=-Wno-unknown-warning-option
+    --checks="${full_check_list}"
+)
+unset(full_check_list)
+
 _enable_stat(include-what-you-use)
 
 unset_function(_enable_stat)
