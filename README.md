@@ -8,9 +8,8 @@ project](https://github.com/lefticus/cpp_starter_project).
 _NOTE 1:_ This project is meant specifically for C++, it will likely take a lot of
 work to adapt it for use with C (or any other language).
 
-_NOTE 2:_ The minimum recommended standard is C++17 (default since GCC 11 and
-Clang 16). The minimum supported standard is C++11 (though this only matters for
-certain warnings).
+_NOTE 2:_ The minimum required standard is C++17 (default since GCC 11 and Clang 16).
+
 ## Dependencies
 
 ### Required
