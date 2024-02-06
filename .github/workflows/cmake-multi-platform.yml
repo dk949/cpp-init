@@ -63,11 +63,6 @@ jobs:
           ${{ github.workspace }}/vcpkg_installed
         key: ${{ matrix.os }}-${{ matrix.c_compiler }}-${{ matrix.build_type }}-vcpkg
 
-    - name: ccache
-      uses: hendrikmuhs/ccache-action@v1.2
-      with:
-        key: ${{ matrix.os }}-${{ matrix.c_compiler }}-${{ matrix.build_type }}
-
     - name: Configure vcpkg
       if: steps.cache-vcpkg.outputs.cache-hit != 'true'
       working-directory: ${{ github.workspace }}

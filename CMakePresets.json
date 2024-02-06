@@ -39,7 +39,7 @@
         "ENABLE_DOXYGEN": false,
         "WARNINGS_AS_ERRORS": true,
         "CMAKE_EXPORT_COMPILE_COMMANDS": false,
-        "ENABLE_CACHE": true,
+        "ENABLE_CACHE": false,
         "ENABLE_CLANG_TIDY": true,
         "ENABLE_CLANG_TIDY_FULL": true
       }
