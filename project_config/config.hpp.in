@@ -2,7 +2,7 @@
 #define PROJECT_CONFIG_HPP
 #include <string_view>
 
-namespace project {
+namespace @THIS_PROJECT_NAME@ {
 namespace version {
     static constexpr std::string_view full = "@PROJECT_VERSION@";
     static constexpr int major = @PROJECT_VERSION_MAJOR@;

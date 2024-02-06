@@ -12,8 +12,8 @@ Or adding a test in ./tests
 
 Find more info at {}/wiki
 )",
-        project::name,
-        project::description,
-        project::version::full,
-        project::url);
+        cpp_init::name,
+        cpp_init::description,
+        cpp_init::version::full,
+        cpp_init::url);
 }
