@@ -8,7 +8,7 @@
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
-        "ENABLE_CACHE": true,
+        "ENABLE_CACHE": false,
         "CMAKE_EXPORT_COMPILE_COMMANDS": true
       }
     },
