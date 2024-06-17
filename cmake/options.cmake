@@ -53,7 +53,7 @@ set(CACHE_PROGRAM "ccache" CACHE STRING "Compiler cache to be used")
 set(MACRO_PREFIX "" CACHE STRING "Make __FILE__ macro relative to particular directory")
 
 # Language standard and extensions
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 

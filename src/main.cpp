@@ -1,5 +1,6 @@
 #include <fmt/format.h>
 #include <project/config.hpp>
+#include <source_location>
 
 int main() {
     fmt::print(R"({}: {}
@@ -8,7 +9,7 @@ version v{}
 
 Compiling on {} {} with {} {} compiler (using {})
 
-Try editing the source code in ./src
+Try editing the source code in ./{}
 
 Or adding a test in ./tests
 
@@ -23,5 +24,6 @@ Find more info at {}/wiki
         cpp_init::compiler::vendor_str,
         cpp_init::compiler::version::full,
         cpp_init::lang::std_str,
+        std::source_location::current().file_name(),
         cpp_init::url);
 }
