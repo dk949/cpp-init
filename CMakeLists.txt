@@ -16,6 +16,7 @@ include(cmake/compile_commands.cmake)
 include(cmake/compiler_warnings.cmake)
 include(cmake/doxygen.cmake)
 include(cmake/sanitizers.cmake)
+include(cmake/macro_prefix.cmake)
 
 add_subdirectory(src)
 add_subdirectory(project_config)

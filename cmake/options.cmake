@@ -48,7 +48,9 @@ option(WARNINGS_AS_ERRORS "Treat compiler warnings as errors" ON)
 option(ENABLE_CACHE "Enable cache if available" OFF)
 set(CACHE_PROGRAM "ccache" CACHE STRING "Compiler cache to be used")
 
+# Macro prefix
 
+set(MACRO_PREFIX "" CACHE STRING "Make __FILE__ macro relative to particular directory")
 
 # Language standard and extensions
 set(CMAKE_CXX_STANDARD 17)
