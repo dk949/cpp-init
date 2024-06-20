@@ -1,6 +1,12 @@
 #include <fmt/format.h>
 #include <project/config.hpp>
-#include <source_location>
+#if defined(CPP_INIT_COMPILER_Clang) && CPP_INIT_COMPILER_VERSION_MAJOR <= 14
+#    include <experimental/source_location>
+#    define CPP_INIT_STD_EXPERIMENTAL std::experimental
+#else
+#    include <source_location>
+#    define CPP_INIT_STD_EXPERIMENTAL std
+#endif
 
 int main() {
     fmt::print(R"({}: {}
@@ -24,6 +30,7 @@ Find more info at {}/wiki
         cpp_init::compiler::vendor_str,
         cpp_init::compiler::version::full,
         cpp_init::lang::std_str,
-        std::source_location::current().file_name(),
+        // Clang <= 14 supporrt
+        CPP_INIT_STD_EXPERIMENTAL::source_location::current().file_name(),
         cpp_init::url);
 }
