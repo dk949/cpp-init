@@ -4,3 +4,4 @@ vcpkg
 vcpkg_installed/
 */compile_commands.json
 vcpkg-manifest-install.log
+_deps
