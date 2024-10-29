@@ -1,4 +1,4 @@
-link_compile_commands()
+link_compile_commands(compile_commands.json)
 
 file(GLOB_RECURSE SOURCE_FILES "${CMAKE_SOURCE_DIR}/src/*.cpp")
 list(REMOVE_ITEM SOURCE_FILES ${MAIN})

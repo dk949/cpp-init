@@ -1,4 +1,4 @@
-link_compile_commands()
+link_compile_commands(compile_commands.json)
 
 file(GLOB_RECURSE TEST_FILES "${CMAKE_SOURCE_DIR}/tests/*.cpp")
 add_executable(${TEST_NAME} ${TEST_FILES})
