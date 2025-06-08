@@ -1,13 +1,13 @@
 link_compile_commands(compile_commands.json)
 
-file(GLOB_RECURSE SOURCE_FILES "${CMAKE_SOURCE_DIR}/src/*.cpp")
-list(REMOVE_ITEM SOURCE_FILES ${MAIN})
-add_dummy_source(SOURCE_FILES)
+add_library(${OBJLIB_NAME} OBJECT
+    ${CMAKE_CURRENT_SOURCE_DIR}/factorial.cpp
+)
 
-
-add_library(${OBJLIB_NAME} OBJECT ${SOURCE_FILES})
-target_include_directories(${OBJLIB_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/src)
-target_include_directories(${OBJLIB_NAME} PUBLIC "${CMAKE_BINARY_DIR}/project_config/include")
+target_sources(${OBJLIB_NAME} PUBLIC FILE_SET HEADERS BASE_DIRS
+    ${CMAKE_SOURCE_DIR}/src
+    ${CMAKE_BINARY_DIR}/project_config/include
+)
 
 find_package(fmt CONFIG REQUIRED)
 target_link_libraries(${OBJLIB_NAME} PUBLIC fmt::fmt)
