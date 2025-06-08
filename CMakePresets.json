@@ -4,11 +4,11 @@
     {
       "name": "default",
       "displayName": "Default Config",
-      "description": "Default build using Unix Makefiles generator",
+      "description": "Default build using Ninja generator",
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
-        "ENABLE_CACHE": false,
+        "ENABLE_CACHE": true,
         "CMAKE_EXPORT_COMPILE_COMMANDS": true
       }
     },
