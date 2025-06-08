@@ -104,7 +104,7 @@
 namespace ${THIS_PROJECT_NAME} {
 
 namespace sys {
-    enum struct Os {
+    enum struct Os : unsigned char {
         ADSP, AIX, Android, ARTOS, BeOS, BlueGeneL, BlueGeneP_dynamic,
         BlueGeneP_static, BlueGeneQ_dynamic, BlueGeneQ_static, BSDOS,
         Catamount, CrayLinuxEnvironment, CYGWIN, Darwin, DOS, DragonFly,
@@ -123,7 +123,7 @@ namespace sys {
 } // namespace sys
 
 namespace compiler {
-    enum struct Vendor {
+    enum struct Vendor : unsigned char {
         ADSP, AppleClang, ARMCC, ARMClang, Bruce, Clang, Cray,
         CrayClang, Embarcadero, Borland, Fujitsu, FujitsuClang,
         GNU, GHS, HP, IAR, Intel, IntelLLVM, LCC, MSVC, NVHPC,
@@ -148,7 +148,7 @@ namespace version {
 } // namespace compiler
 
 namespace lang {
-    enum struct Std { Cxx98, Cxx03, Cxx11, Cxx14, Cxx17, Cxx20, Cxx23 };
+    enum struct Std : unsigned char { Cxx98, Cxx03, Cxx11, Cxx14, Cxx17, Cxx20, Cxx23 };
 
     inline constexpr auto std =
 #if ${PROJECT_NAME_CAPS}_HAS_STD_CXX23
