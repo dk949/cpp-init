@@ -1,0 +1,7 @@
+function(target_always_include target access file)
+    if (MSVC)
+        target_compile_options(${target} ${access} "/FI${file}")
+    else()
+        target_compile_options(${target} ${access} "-include${file}")
+    endif()
+endfunction()
