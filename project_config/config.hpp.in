@@ -118,7 +118,7 @@ namespace sys {
 
     inline constexpr auto os = Os::${SYSTEM_NAME_SANITISED};
     inline constexpr std::string_view os_str = "${SYSTEM_NAME_SANITISED}";
-    inline constexpr auto is_unix = static_cast<bool>(${PROJECT_NAME_CAPS}_SYSTEM_IS_UNIX);
+    inline constexpr auto is_unix = ${PROJECT_NAME_CAPS}_SYSTEM_IS_UNIX != 0;
     inline constexpr std::string_view version = ${PROJECT_NAME_CAPS}_SYSTEM_VERSION;
 } // namespace sys
 
@@ -133,9 +133,9 @@ namespace compiler {
 
     inline constexpr auto vendor = Vendor::${CMAKE_CXX_COMPILER_ID};
     inline constexpr std::string_view vendor_str = "${CMAKE_CXX_COMPILER_ID}";
-    inline constexpr auto is_clang_like = static_cast<bool>(${PROJECT_NAME_CAPS}_COMPILER_IS_CLANG_LIKE);
-    inline constexpr auto is_gnu_like   = static_cast<bool>(${PROJECT_NAME_CAPS}_COMPILER_IS_GNU_LIKE);
-    inline constexpr auto is_icc_like   = static_cast<bool>(${PROJECT_NAME_CAPS}_COMPILER_IS_ICC_LIKE);
+    inline constexpr auto is_clang_like = ${PROJECT_NAME_CAPS}_COMPILER_IS_CLANG_LIKE != 0;
+    inline constexpr auto is_gnu_like   = ${PROJECT_NAME_CAPS}_COMPILER_IS_GNU_LIKE != 0;
+    inline constexpr auto is_icc_like   = ${PROJECT_NAME_CAPS}_COMPILER_IS_ICC_LIKE != 0;
 
 namespace version {
     inline constexpr std::string_view full = ${PROJECT_NAME_CAPS}_COMPILER_VERSION;
