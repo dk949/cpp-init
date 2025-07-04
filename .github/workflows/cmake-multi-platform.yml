@@ -99,6 +99,6 @@ jobs:
       run: ctest --build-config ${{ matrix.build_type }} --output-on-failure
 
     - name: Test + Coverage
-      if: runner.os != Windows
+      if: matrix.os != 'windows-latest'
       working-directory: ${{ steps.strings.outputs.build-output-dir }}/tests
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }} -t coverage
