@@ -15,6 +15,7 @@ target_link_libraries(${OBJLIB_NAME} PUBLIC fmt::fmt)
 enable_sanitizers(${OBJLIB_NAME} PUBLIC)
 set_target_warnings(${OBJLIB_NAME} PUBLIC)
 set_macro_prefix(${OBJLIB_NAME} PUBLIC)
+target_add_coverage(${OBJLIB_NAME} PUBLIC)
 
 add_executable(${EXE_NAME} ${MAIN})
 target_link_libraries(${EXE_NAME} PRIVATE ${OBJLIB_NAME})

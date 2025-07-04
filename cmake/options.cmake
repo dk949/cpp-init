@@ -1,4 +1,5 @@
 # cmake-format: off
+include(${CMAKE_SOURCE_DIR}/cmake/options_support.cmake)
 
 
 # Targets
@@ -18,7 +19,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin CACHE STRING "executa
 
 
 # Tests
-option(BUILD_TESTING "Build the tests" ON)
+option(BUILD_TESTING "Build the tests" ${IS_DEBUG})
+option(ENABLE_COVERAGE "Build tests with coverage" ${IS_DEBUG})
 
 # Analysers
 option(ENABLE_CPPCHECK "Enable cppcheck" OFF)
@@ -29,7 +31,7 @@ option(ENABLE_INCLUDE_WHAT_YOU_USE "Enable include-what-you-use" OFF)
 
 
 # Sanitizers
-option(ENABLE_SANITIZERS "Enable sanitizers" OFF)
+option(ENABLE_SANITIZERS "Enable sanitizers" ${IS_DEBUG})
 set(SANITIZER_LIST "address,leak,undefined" CACHE STRING "List of sanitizers to use")
 
 
@@ -59,7 +61,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 
 # Compile commands
-option(CMAKE_EXPORT_COMPILE_COMMANDS "generate compile_commands.json" OFF)
+option(CMAKE_EXPORT_COMPILE_COMMANDS "generate compile_commands.json" ON)
 
 set(FETCHCONTENT_BASE_DIR "${PROJECT_SOURCE_DIR}/_deps" CACHE STRING "base directory to fetch content into")
 
