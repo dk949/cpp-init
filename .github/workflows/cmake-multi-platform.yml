@@ -61,7 +61,7 @@ jobs:
 
     - name: Install lcov Linux
       id: install-lcov
-      if: matrix.os == 'ubuntu-latest'
+      if:  steps.strings.outputs.enable_coverage  == 'ON'
       run: |
         sudo apt update
         sudo apt install lcov
