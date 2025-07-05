@@ -50,11 +50,23 @@ jobs:
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
         if [ "$RUNNER_OS" = "Linux" ]; then
           echo "vcpkg-setup-file=bootstrap-vcpkg.sh" >> "$GITHUB_OUTPUT"
-          echo "enable_coverage=ON" >> "$GITHUB_OUTPUT"
         elif [ "$RUNNER_OS" = "Windows" ]; then
           echo "vcpkg-setup-file=bootstrap-vcpkg.bat" >> "$GITHUB_OUTPUT"
-          echo "enable_coverage=OFF" >> "$GITHUB_OUTPUT"
         fi
+
+    - name: Set coverage off
+      if: matrix.c_compiler != 'gcc' || matrix.build_type == 'Release'
+      id: coverage-state
+      shell: bash
+      run: |
+          echo "enable_coverage=OFF" >> "$GITHUB_OUTPUT"
+
+    - name: Set coverage on
+      if: matrix.c_compiler != 'gcc' && matrix.build_type == 'Release'
+      id: coverage-state
+      shell: bash
+      run: |
+          echo "enable_coverage=ON" >> "$GITHUB_OUTPUT"
 
     - name: Install lcov Linux
       id: install-lcov
@@ -87,7 +99,7 @@ jobs:
         -DCMAKE_CXX_COMPILER=${{ matrix.cxx_compiler }}
         -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
         -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
-        -DENABLE_COVERAGE=${{ steps.strings.outputs.enable_coverage }}
+        -DENABLE_COVERAGE=${{ steps.coverage-state.outputs.enable_coverage }}
         -S ${{ github.workspace }}
 
     - name: Build
