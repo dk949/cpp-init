@@ -97,11 +97,11 @@ jobs:
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }} -j
 
     - name: Test
-      if: matrix.os == 'windows-latest'
+      if:  steps.strings.outputs.enable_coverage  == 'OFF'
       working-directory: ${{ steps.strings.outputs.build-output-dir }}/tests
       run: ctest --build-config ${{ matrix.build_type }} --output-on-failure
 
     - name: Test + Coverage
-      if: matrix.os != 'windows-latest'
+      if:  steps.strings.outputs.enable_coverage  == 'ON'
       working-directory: ${{ steps.strings.outputs.build-output-dir }}/tests
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }} -t coverage
