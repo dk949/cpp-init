@@ -2,9 +2,7 @@ cmake_minimum_required(VERSION 3.25)
 include(cmake/setup_pkg.cmake)
 project(
     ${THIS_PROJECT_NAME}
-    VERSION ${THIS_PROJECT_VERSION}
-    ${THIS_PROJECT_DESCRIPTION}
-    ${THIS_PROJECT_HOMEPAGE_URL}
+    VERSION ${THIS_PROJECT_VERSION} ${THIS_PROJECT_DESCRIPTION} ${THIS_PROJECT_HOMEPAGE_URL}
     LANGUAGES CXX
 )
 
@@ -23,6 +21,6 @@ include(cmake/coverage.cmake)
 add_subdirectory(src)
 add_subdirectory(project_config)
 
-if(BUILD_TESTING)
+if (BUILD_TESTING)
     add_subdirectory(tests)
-endif()
+endif ()

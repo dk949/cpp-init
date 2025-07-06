@@ -19,20 +19,10 @@ if (_err)
     message(FATAL_ERROR "Could not get project name from manifest: ${_err}")
 endif ()
 
-string(
-    REPLACE "-"
-            "_"
-            THIS_PROJECT_NAME
-            ${THIS_PROJECT_NAME}
-)
+string(REPLACE "-" "_" THIS_PROJECT_NAME ${THIS_PROJECT_NAME})
 
 # get versino from manifest. try all formats until one works
-set(_version_types
-    "version-string"
-    "version"
-    "version-semver"
-    "version-date"
-)
+set(_version_types "version-string" "version" "version-semver" "version-date")
 foreach (_version ${_version_types})
 
     # cmake-format: off
@@ -62,10 +52,9 @@ if (_err)
     message(FATAL_ERROR "Could not get project description from manifest: ${_err}")
 endif ()
 
-if(NOT ${_desc} STREQUAL "")
-    set (THIS_PROJECT_DESCRIPTION DESCRIPTION ${_desc})
-endif()
-
+if (NOT ${_desc} STREQUAL "")
+    set(THIS_PROJECT_DESCRIPTION DESCRIPTION ${_desc})
+endif ()
 
 # get url from manifest.
 # cmake-format: off
@@ -79,9 +68,9 @@ if (_err)
     message(FATAL_ERROR "Could not get project url from manifest: ${_err}")
 endif ()
 
-if(NOT ${_url} STREQUAL "")
-    set (THIS_PROJECT_HOMEPAGE_URL HOMEPAGE_URL ${_url})
-endif()
+if (NOT ${_url} STREQUAL "")
+    set(THIS_PROJECT_HOMEPAGE_URL HOMEPAGE_URL ${_url})
+endif ()
 
 unset(_err)
 unset(_version_types)

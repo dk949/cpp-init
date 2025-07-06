@@ -33,12 +33,11 @@ do_thing() # ERROR
 ```
 
 ]]
-function(unset_function func)
-    function(${func})
+function (unset_function func)
+    function (${func})
         message(FATAL_ERROR "Calling a deleted function \"${CMAKE_CURRENT_FUNCTION}\"")
-    endfunction()
-endfunction()
-
+    endfunction ()
+endfunction ()
 
 #[[
 optional_args(<prefix> DEFAULTS <defaults>... ARGS <args>...)
@@ -65,29 +64,27 @@ foo("hello" "bob")
 ```
 
 ]]
-macro(optional_args out_prefix)
+macro (optional_args out_prefix)
     cmake_parse_arguments(args "" "" "ARGS;DEFAULTS" ${ARGN})
     set(i 0)
-    foreach(arg def IN ZIP_LISTS args_ARGS args_DEFAULTS)
-        if(DEFINED arg)
+    foreach (arg def IN ZIP_LISTS args_ARGS args_DEFAULTS)
+        if (DEFINED arg)
             set(${out_prefix}_${i} ${arg})
-        else()
+        else ()
             set(${out_prefix}_${i} ${def})
-        endif()
+        endif ()
         math(EXPR i "${i} + 1")
-    endforeach()
+    endforeach ()
     set(${out_prefix}_N ${i})
-endmacro()
-
-
+endmacro ()
 
 #[[
 adds a dummy c++ file and sets `source_files` to the path to this file
 ]]
-macro(add_dummy_source source_files)
-    if(NOT ${source_files})
+macro (add_dummy_source source_files)
+    if (NOT ${source_files})
         set(fname ${CMAKE_BINARY_DIR}/dummy.cpp)
         file(WRITE ${fname} "[[maybe_unused]] static int i;")
         set(${source_files} ${fname})
-    endif()
-endmacro()
+    endif ()
+endmacro ()

@@ -8,7 +8,7 @@ function (enable_sanitizers project_name #[[access]])
 
     if (MSVC)
         return()
-    endif()
+    endif ()
 
     message(STATUS "Running with sanitizers: [${SANITIZER_LIST}]")
     target_compile_options(${project_name} ${acc_0} -fsanitize=${SANITIZER_LIST})
