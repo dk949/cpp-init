@@ -7,8 +7,7 @@ if (NOT CMAKE_BUILD_TYPE)
 endif ()
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-    set(IS_DEBUG
-        YES
-        CACHE INTERNAL ""
-    )
+    set(IS_DEBUG ON CACHE INTERNAL "")
+else()
+    set(IS_NOT_DEBUG ON CACHE INTERNAL "")
 endif ()
