@@ -1,7 +1,6 @@
 link_compile_commands(compile_commands.json)
 
-file(GLOB_RECURSE TEST_FILES "${CMAKE_SOURCE_DIR}/tests/*.cpp")
-add_executable(${TEST_NAME} ${TEST_FILES})
+add_executable(${TEST_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/test_factorial.cpp)
 target_link_libraries(${TEST_NAME} PRIVATE ${OBJLIB_NAME})
 
 find_package(Catch2 3 REQUIRED)
