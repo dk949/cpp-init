@@ -17,10 +17,10 @@ function (target_add_coverage target access)
     find_program_nix(LCOV_EXE lcov)
     string(REGEX REPLACE " +" ";" LCOV_EXE "${LCOV_EXE}")
 
-    set(OBJDIR ${CMAKE_BINARY_DIR}/src/CMakeFiles/${OBJLIB_NAME}.dir/)
+    set(OBJDIR ${CMAKE_BINARY_DIR}/tests/CMakeFiles/${target}.dir/)
 
     add_custom_target(
-        coverage
+        "coverage_${target}"
         COMMENT "Generating coverage report"
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
         COMMAND #
@@ -48,6 +48,6 @@ function (target_add_coverage target access)
         VERBATIM
     )
 
-    add_dependencies(coverage ${TEST_NAME})
+    add_dependencies("coverage_${target}" ${TEST_NAME})
 
 endfunction ()
