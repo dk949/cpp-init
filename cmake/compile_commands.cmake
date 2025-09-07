@@ -3,8 +3,8 @@ function (link_compile_commands name)
         return()
     endif ()
 
-    string(REGEX REPLACE "\/|\\|\ |\." "_" _dir ${CMAKE_CURRENT_LIST_DIR})
-    string(REGEX REPLACE "\/|\\|\ |\." "_" _name ${name})
+    string(REGEX REPLACE "\\/|\\\\|\\ |\\." "_" _dir ${CMAKE_CURRENT_LIST_DIR})
+    string(REGEX REPLACE "\\/|\\\\|\\ |\\." "_" _name ${name})
 
     set(cmd_target "${CMAKE_CURRENT_LIST_DIR}/${name}")
     add_custom_command(
