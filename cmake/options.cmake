@@ -61,7 +61,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 
 # Compile commands
-option(CMAKE_EXPORT_COMPILE_COMMANDS "generate compile_commands.json" ON)
+option(CMAKE_EXPORT_COMPILE_COMMANDS "generate compile_commands.json" ${IS_DEBUG})
 
 set(FETCHCONTENT_BASE_DIR "${PROJECT_SOURCE_DIR}/_deps" CACHE STRING "base directory to fetch content into")
 
