@@ -66,4 +66,7 @@ option(CMAKE_EXPORT_COMPILE_COMMANDS "generate compile_commands.json" ${IS_DEBUG
 
 set(FETCHCONTENT_BASE_DIR "${PROJECT_SOURCE_DIR}/_deps" CACHE STRING "base directory to fetch content into")
 
+# Compiler colours
+option(CMAKE_COLOR_DIAGNOSTICS "use colour output for compilation" ON)
+
 # cmake-format: on
