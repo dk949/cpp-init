@@ -1,16 +1,16 @@
 # Use the toolchain file
 set(CMAKE_TOOLCHAIN_FILE
-    "${CMAKE_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
+    "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
     CACHE STRING ""
 )
 
 # Read manifest
-file(READ "${CMAKE_SOURCE_DIR}/vcpkg.json" _manifest)
+file(READ "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg.json" _manifest)
 
 # Get project name from manifest
 # cmake-format: off
 string(
-    JSON THIS_PROJECT_NAME
+    JSON %%CPP_INIT_REPLACE%%_PROJECT_NAME
     ERROR_VARIABLE _err
     GET ${_manifest} "name"
 )
@@ -19,7 +19,7 @@ if (_err)
     message(FATAL_ERROR "Could not get project name from manifest: ${_err}")
 endif ()
 
-string(REPLACE "-" "_" THIS_PROJECT_NAME ${THIS_PROJECT_NAME})
+string(REPLACE "-" "_" %%CPP_INIT_REPLACE%%_PROJECT_NAME ${%%CPP_INIT_REPLACE%%_PROJECT_NAME})
 
 # get versino from manifest. try all formats until one works
 set(_version_types "version-string" "version" "version-semver" "version-date")
@@ -27,7 +27,7 @@ foreach (_version ${_version_types})
 
     # cmake-format: off
     string(
-        JSON THIS_PROJECT_VERSION
+        JSON %%CPP_INIT_REPLACE%%_PROJECT_VERSION
         ERROR_VARIABLE _err
         GET ${_manifest} "${_version}"
     )# cmake-format: on
@@ -53,7 +53,7 @@ if (_err)
 endif ()
 
 if (NOT ${_desc} STREQUAL "")
-    set(THIS_PROJECT_DESCRIPTION DESCRIPTION ${_desc})
+    set(%%CPP_INIT_REPLACE%%_PROJECT_DESCRIPTION ${_desc})
 endif ()
 
 # get url from manifest.
@@ -69,10 +69,12 @@ if (_err)
 endif ()
 
 if (NOT ${_url} STREQUAL "")
-    set(THIS_PROJECT_HOMEPAGE_URL HOMEPAGE_URL ${_url})
+    set(%%CPP_INIT_REPLACE%%_PROJECT_HOMEPAGE_URL ${_url})
 endif ()
 
-unset(_err)
-unset(_version_types)
 unset(_desc)
+unset(_err)
+unset(_manifest)
 unset(_url)
+unset(_version)
+unset(_version_types)

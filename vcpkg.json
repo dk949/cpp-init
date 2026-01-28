@@ -1,10 +1,9 @@
 {
-  "name": "cpp-init",
-  "version-string": "2.0.0",
-  "description": "provides cmake boilerplate for a c++ project.",
+  "name": "%%cpp_init_replace%%",
+  "version-string": "0.1.0",
+  "description": "%%cpp_init_description%%",
   "dependencies": [
-    "fmt",
     "catch2"
   ],
-  "$url": "https://github.com/dk949/cpp-init"
+  "$url": "%%cpp_init_url%%"
 }

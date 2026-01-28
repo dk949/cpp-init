@@ -2,16 +2,13 @@
 #
 # https://github.com/lefticus/cppbestpractices/blob/master/02-Use_the_Tools_Available.md
 
-include(${CMAKE_SOURCE_DIR}/cmake/misc.cmake)
-
-function (set_target_warnings project_name #[[access]])
-    macro (gnu_add_no_error warn_list warn)
+function (%%cpp_init_replace%%_target_warnings project_name acc)
+    macro (%%cpp_init_replace%%_gnu_add_no_error warn_list warn)
         list(APPEND ${warn_list} "-W${warn}")
         list(APPEND ${warn_list} "-Wno-error=${warn}")
     endmacro ()
 
-    optional_args(acc DEFAULTS "PRIVATE" ARGS ${ARGN})
-    set(MSVC_WARNINGS
+    set(_msvc_warnings
         /W4 # Baseline reasonable warnings
         /w14242 # 'identifier': conversion from 'type1' to 'type1', possible loss of data
         /w14254 # 'operator': conversion from 'type1:field_bits' to 'type2:field_bits', possible loss of data
@@ -39,7 +36,7 @@ function (set_target_warnings project_name #[[access]])
         /permissive- # standards conformance mode for MSVC compiler.
     )
 
-    set(COMMON_WARNINGS
+    set(_common_warnings
         -Wall
         -Wextra # reasonable and standard
         -Wshadow # warn the user if a variable declaration shadows one from a parent context
@@ -63,23 +60,23 @@ function (set_target_warnings project_name #[[access]])
         -Wsuggest-override # suggest virtual function is marked override if it overrides something
     )
     # Warnings which are not errors even when -Werror is on
-    gnu_add_no_error(COMMON_WARNINGS unused-but-set-parameter)
-    gnu_add_no_error(COMMON_WARNINGS unused-but-set-variable)
-    gnu_add_no_error(COMMON_WARNINGS unused-const-variable)
-    gnu_add_no_error(COMMON_WARNINGS unused-function)
-    gnu_add_no_error(COMMON_WARNINGS unused-label)
-    gnu_add_no_error(COMMON_WARNINGS unused-local-typedefs)
-    gnu_add_no_error(COMMON_WARNINGS unused-macros)
-    gnu_add_no_error(COMMON_WARNINGS unused-parameter)
-    gnu_add_no_error(COMMON_WARNINGS unused-variable)
+    %%cpp_init_replace%%_gnu_add_no_error(_common_warnings unused-but-set-parameter)
+    %%cpp_init_replace%%_gnu_add_no_error(_common_warnings unused-but-set-variable)
+    %%cpp_init_replace%%_gnu_add_no_error(_common_warnings unused-const-variable)
+    %%cpp_init_replace%%_gnu_add_no_error(_common_warnings unused-function)
+    %%cpp_init_replace%%_gnu_add_no_error(_common_warnings unused-label)
+    %%cpp_init_replace%%_gnu_add_no_error(_common_warnings unused-local-typedefs)
+    %%cpp_init_replace%%_gnu_add_no_error(_common_warnings unused-macros)
+    %%cpp_init_replace%%_gnu_add_no_error(_common_warnings unused-parameter)
+    %%cpp_init_replace%%_gnu_add_no_error(_common_warnings unused-variable)
 
-    if (WARNINGS_AS_ERRORS)
-        set(COMMON_WARNINGS ${COMMON_WARNINGS} -Werror)
-        set(MSVC_WARNINGS ${MSVC_WARNINGS} /WX)
+    if (%%CPP_INIT_REPLACE%%_WARNINGS_AS_ERRORS)
+        set(_common_warnings ${_common_warnings} -Werror)
+        set(_msvc_warnings ${_msvc_warnings} /WX)
     endif ()
 
-    set(GCC_WARNINGS
-        ${COMMON_WARNINGS}
+    set(_gcc_warnings
+        ${_common_warnings}
         -Wduplicated-cond # warn if if / else chain has duplicated conditions
         -Wduplicated-branches # warn if if / else branches have duplicated code
         -Wlogical-op # warn about logical operations being used where bitwise were probably wanted
@@ -88,22 +85,22 @@ function (set_target_warnings project_name #[[access]])
         -Wunused-const-variable=1 # using level 1, because default (set above) also accounts for headers
     )
 
-    set(CLANG_WARNINGS #
-        ${COMMON_WARNINGS} -Wused-but-marked-unused #< this is only for [[gnu::unused]], not [[maybe_unused]]
+    set(_clang_warnings #
+        ${_common_warnings} -Wused-but-marked-unused #< this is only for [[gnu::unused]], not [[maybe_unused]]
     )
-    gnu_add_no_error(CLANG_WARNINGS unused-private-field)
-    gnu_add_no_error(CLANG_WARNINGS unused-comparison)
-    gnu_add_no_error(CLANG_WARNINGS unused-exception-parameter)
-    gnu_add_no_error(CLANG_WARNINGS unused-lambda-capture)
-    gnu_add_no_error(CLANG_WARNINGS unused-member-function)
-    gnu_add_no_error(CLANG_WARNINGS unused-template)
+    %%cpp_init_replace%%_gnu_add_no_error(_clang_warnings unused-private-field)
+    %%cpp_init_replace%%_gnu_add_no_error(_clang_warnings unused-comparison)
+    %%cpp_init_replace%%_gnu_add_no_error(_clang_warnings unused-exception-parameter)
+    %%cpp_init_replace%%_gnu_add_no_error(_clang_warnings unused-lambda-capture)
+    %%cpp_init_replace%%_gnu_add_no_error(_clang_warnings unused-member-function)
+    %%cpp_init_replace%%_gnu_add_no_error(_clang_warnings unused-template)
 
     if (MSVC)
-        target_compile_options(${project_name} ${acc_0} ${MSVC_WARNINGS})
+        target_compile_options(${project_name} ${acc} ${_msvc_warnings})
     elseif (CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
-        target_compile_options(${project_name} ${acc_0} ${CLANG_WARNINGS})
+        target_compile_options(${project_name} ${acc} ${_clang_warnings})
     elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-        target_compile_options(${project_name} ${acc_0} ${GCC_WARNINGS})
+        target_compile_options(${project_name} ${acc} ${_gcc_warnings})
     else ()
         message(AUTHOR_WARNING "No compiler warnings set for '${CMAKE_CXX_COMPILER_ID}' compiler.")
     endif ()

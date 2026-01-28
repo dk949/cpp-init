@@ -1,0 +1,12 @@
+function(_%%cpp_init_replace%%_normalise_val val out)
+    string(STRIP "${${val}}" _val)
+    string(TOUPPER "${_val}" _val)
+
+    if(NOT _val)
+        set(${out} FALSE PARENT_SCOPE)
+    elseif((_val STREQUAL "ON") OR (_val STREQUAL "TRUE") OR (_val STREQUAL "YES") OR (_val STREQUAL "Y")  OR (_val STREQUAL "1"))
+        set(${out} TRUE PARENT_SCOPE)
+    else()
+        set(${out} LIST PARENT_SCOPE)
+    endif()
+endfunction()

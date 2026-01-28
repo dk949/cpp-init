@@ -1,72 +1,64 @@
 # cmake-format: off
-include(${CMAKE_SOURCE_DIR}/cmake/options_support.cmake)
-
 
 # Targets
-set(EXE_NAME ${CMAKE_PROJECT_NAME} CACHE STRING "Name of the main executable")
-set(OBJLIB_NAME ${CMAKE_PROJECT_NAME}_objlib CACHE STRING "Name of the object library (used for tests)")
-set(TEST_NAME ${CMAKE_PROJECT_NAME}_test CACHE STRING "Name of the test executable")
-set(DOXYFILE_SUFFIX ${CMAKE_PROJECT_NAME}_docs CACHE STRING "Documentation target")
-
-# main file
-set(MAIN "${CMAKE_SOURCE_DIR}/src/main.cpp" CACHE STRING "File containing the main function")
-
+set(%%CPP_INIT_REPLACE%%_EXE_NAME ${%%CPP_INIT_REPLACE%%_PROJECT_NAME} CACHE STRING "Name of the main executable")
+set(%%CPP_INIT_REPLACE%%_LIB_NAME ${%%CPP_INIT_REPLACE%%_PROJECT_NAME} CACHE STRING "Name of the main library")
+set(%%CPP_INIT_REPLACE%%_OBJLIB_NAME ${%%CPP_INIT_REPLACE%%_PROJECT_NAME}_objlib CACHE STRING "Name of the object library (used for tests)")
+set(%%CPP_INIT_REPLACE%%_TEST_NAME ${%%CPP_INIT_REPLACE%%_PROJECT_NAME}_test CACHE STRING "Name of the test executable")
+set(%%CPP_INIT_REPLACE%%_DOXYFILE_SUFFIX ${%%CPP_INIT_REPLACE%%_PROJECT_NAME}_docs CACHE STRING "Documentation target")
 
 # Artifacts
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib CACHE STRING "archive location")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib CACHE STRING "library location")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin CACHE STRING "executable location")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib CACHE STRING "archive location")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib CACHE STRING "library location")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin CACHE STRING "executable location")
 
 
+set(_%%cpp_init_replace%%_usage "Can be a boolean or a list of build types (semicolon separated).")
 # Tests
-option(BUILD_TESTING "Build the tests" ${IS_DEBUG})
-option(ENABLE_COVERAGE "Build tests with coverage" ${IS_DEBUG})
+option(%%CPP_INIT_REPLACE%%_BUILD_TESTING "Build the tests" OFF)
+option(%%CPP_INIT_REPLACE%%_ENABLE_COVERAGE "Build tests with coverage (only in Debug mode)" OFF)
 
 # Analysers
-option(ENABLE_CPPCHECK "Enable cppcheck" OFF)
-option(ENABLE_CLANG_TIDY "Enable clang-tidy" OFF)
-option(ENABLE_CLANG_TIDY_FULL "Enable more clang-tidy checks (takes more time)" OFF)
-option(ENABLE_INCLUDE_WHAT_YOU_USE "Enable include-what-you-use" OFF)
-
-
+option(%%CPP_INIT_REPLACE%%_ENABLE_CPPCHECK "Enable cppcheck" OFF)
+option(%%CPP_INIT_REPLACE%%_ENABLE_CLANG_TIDY "Enable clang-tidy" OFF)
 
 # Sanitizers
-option(ENABLE_SANITIZERS "Enable sanitizers" ${IS_DEBUG})
-set(SANITIZER_LIST "address,leak,undefined" CACHE STRING "List of sanitizers to use")
-
+set(%%CPP_INIT_REPLACE%%_ENABLE_SANITIZERS OFF CACHE STRING "Enable sanitizers. ${_%%cpp_init_replace%%_usage}")
+set(%%CPP_INIT_REPLACE%%_SANITIZER_LIST "address,leak,undefined" CACHE STRING "List of sanitizers to use")
 
 
 # Docs
-option(ENABLE_DOXYGEN "Enable doxygen doc builds of source" ON)
-
-
+option(%%CPP_INIT_REPLACE%%_ENABLE_DOXYGEN "Enable doxygen doc builds of source" OFF)
 
 # Warnings
-option(WARNINGS_AS_ERRORS "Treat compiler warnings as errors" ON)
-
+option(%%CPP_INIT_REPLACE%%_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" ${PROJECT_IS_TOP_LEVEL})
 
 
 # Caching
-option(ENABLE_CACHE "Enable cache if available" OFF)
-set(CACHE_PROGRAM "ccache" CACHE STRING "Compiler cache to be used")
+option(%%CPP_INIT_REPLACE%%_ENABLE_CACHE "Enable cache if available" OFF)
+set(%%CPP_INIT_REPLACE%%_CACHE_PROGRAM "ccache" CACHE STRING "Compiler cache to be used")
 
 # Macro prefix
 
-option(ENABLE_MACRO_PREFIX "Enable __FILE__ macro replacement" ${IS_NOT_DEBUG})
-set(MACRO_PREFIX "./" CACHE STRING "Make __FILE__ macro relative to particular directory")
+option(%%CPP_INIT_REPLACE%%_ENABLE_MACRO_PREFIX "Enable __FILE__ macro replacement" ${IS_NOT_DEBUG})
+set(%%CPP_INIT_REPLACE%%_MACRO_PREFIX "./" CACHE STRING "Make __FILE__ macro relative to particular directory")
 
 # Language standard and extensions
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 
-
 # Compile commands
-option(CMAKE_EXPORT_COMPILE_COMMANDS "generate compile_commands.json" ${IS_DEBUG})
+if(PROJECT_IS_TOP_LEVEL)
+    option(CMAKE_EXPORT_COMPILE_COMMANDS "generate compile_commands.json" OFF)
 
-set(FETCHCONTENT_BASE_DIR "${PROJECT_SOURCE_DIR}/_deps" CACHE STRING "base directory to fetch content into")
+    set(FETCHCONTENT_BASE_DIR "${PROJECT_SOURCE_DIR}/_deps" CACHE STRING "base directory to fetch content into")
 
-# Compiler colours
-option(CMAKE_COLOR_DIAGNOSTICS "use colour output for compilation" ON)
+    # Compiler colours
+    option(CMAKE_COLOR_DIAGNOSTICS "use colour output for compilation" ON)
+    option(CMAKE_CXX_SCAN_FOR_MODULES "" OFF)
+endif()
+
+unset(_%%cpp_init_replace%%_usage)
 
 # cmake-format: on

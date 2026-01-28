@@ -1,107 +1,107 @@
-#ifndef ${THIS_PROJECT_NAME}_CONFIG_HPP
-#define ${THIS_PROJECT_NAME}_CONFIG_HPP
+#ifndef ${%%CPP_INIT_REPLACE%%_PROJECT_NAME}_CONFIG_HPP
+#define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME}_CONFIG_HPP
 #include <string_view>
 
-/// See ${THIS_PROJECT_NAME}::sys::Os for possible values of ${PROJECT_NAME_CAPS}_SYSTEM_IS_*
-#define ${PROJECT_NAME_CAPS}_SYSTEM_${SYSTEM_NAME_SANITISED}
-#define ${PROJECT_NAME_CAPS}_SYSTEM_VERSION "${CMAKE_SYSTEM_VERSION}"
+/// See ${%%CPP_INIT_REPLACE%%_PROJECT_NAME}::sys::Os for possible values of ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_IS_*
+#define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_${%%CPP_INIT_REPLACE%%_SYSTEM_NAME_SANITISED}
+#define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_VERSION "${CMAKE_SYSTEM_VERSION}"
 
-#if    defined(${PROJECT_NAME_CAPS}_SYSTEM_AIX)                                                                    \
-    || defined(${PROJECT_NAME_CAPS}_SYSTEM_Android)             || defined(${PROJECT_NAME_CAPS}_SYSTEM_BSDOS)      \
-    || defined(${PROJECT_NAME_CAPS}_SYSTEM_CrayLinuxEnvironment)|| defined(${PROJECT_NAME_CAPS}_SYSTEM_CYGWIN)     \
-    || defined(${PROJECT_NAME_CAPS}_SYSTEM_Darwin)              || defined(${PROJECT_NAME_CAPS}_SYSTEM_DragonFly)  \
-    || defined(${PROJECT_NAME_CAPS}_SYSTEM_FreeBSD)             || defined(${PROJECT_NAME_CAPS}_SYSTEM_GNU)        \
-    || defined(${PROJECT_NAME_CAPS}_SYSTEM_Haiku)               || defined(${PROJECT_NAME_CAPS}_SYSTEM_HP_UX)      \
-    || defined(${PROJECT_NAME_CAPS}_SYSTEM_iOS)                 || defined(${PROJECT_NAME_CAPS}_SYSTEM_kFreeBSD)   \
-    || defined(${PROJECT_NAME_CAPS}_SYSTEM_Linux)               || defined(${PROJECT_NAME_CAPS}_SYSTEM_Midipix)    \
-    || defined(${PROJECT_NAME_CAPS}_SYSTEM_MirBSD)              || defined(${PROJECT_NAME_CAPS}_SYSTEM_MP_RAS)     \
-    || defined(${PROJECT_NAME_CAPS}_SYSTEM_MSYS)                || defined(${PROJECT_NAME_CAPS}_SYSTEM_NetBSD)     \
-    || defined(${PROJECT_NAME_CAPS}_SYSTEM_OpenBSD)             || defined(${PROJECT_NAME_CAPS}_SYSTEM_OSF1)       \
-    || defined(${PROJECT_NAME_CAPS}_SYSTEM_QNX)                 || defined(${PROJECT_NAME_CAPS}_SYSTEM_SerenityOS) \
-    || defined(${PROJECT_NAME_CAPS}_SYSTEM_SINIX)               || defined(${PROJECT_NAME_CAPS}_SYSTEM_SunOS)      \
-    || defined(${PROJECT_NAME_CAPS}_SYSTEM_Tru64)               || defined(${PROJECT_NAME_CAPS}_SYSTEM_tvOS)       \
-    || defined(${PROJECT_NAME_CAPS}_SYSTEM_ULTRIX)              || defined(${PROJECT_NAME_CAPS}_SYSTEM_UNIX_SV)    \
-    || defined(${PROJECT_NAME_CAPS}_SYSTEM_UnixWare)            || defined(${PROJECT_NAME_CAPS}_SYSTEM_visionOS)   \
-    || defined(${PROJECT_NAME_CAPS}_SYSTEM_watchOS)             || defined(${PROJECT_NAME_CAPS}_SYSTEM_Xenix)
-#    define ${PROJECT_NAME_CAPS}_SYSTEM_IS_UNIX 1
+#if    defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_AIX)                                                                    \
+    || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_Android)             || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_BSDOS)      \
+    || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_CrayLinuxEnvironment)|| defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_CYGWIN)     \
+    || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_Darwin)              || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_DragonFly)  \
+    || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_FreeBSD)             || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_GNU)        \
+    || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_Haiku)               || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_HP_UX)      \
+    || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_iOS)                 || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_kFreeBSD)   \
+    || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_Linux)               || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_Midipix)    \
+    || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_MirBSD)              || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_MP_RAS)     \
+    || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_MSYS)                || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_NetBSD)     \
+    || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_OpenBSD)             || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_OSF1)       \
+    || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_QNX)                 || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_SerenityOS) \
+    || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_SINIX)               || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_SunOS)      \
+    || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_Tru64)               || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_tvOS)       \
+    || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_ULTRIX)              || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_UNIX_SV)    \
+    || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_UnixWare)            || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_visionOS)   \
+    || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_watchOS)             || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_Xenix)
+#    define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_IS_UNIX 1
 #else
-#    define ${PROJECT_NAME_CAPS}_SYSTEM_IS_UNIX 0
+#    define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_IS_UNIX 0
 #endif
 
-/*! See ${THIS_PROJECT_NAME}::sys::Compiler for possible values of ${PROJECT_NAME_CAPS}_COMPILER_IS_*
+/*! See ${%%CPP_INIT_REPLACE%%_PROJECT_NAME}::sys::Compiler for possible values of ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_IS_*
  *
  *   NOTE: This value is derived from the global cmake cxx compiler setting, if different parts of
  *         the project are compiler with different compilers, this will not be reflected here.
  */
-#define ${PROJECT_NAME_CAPS}_COMPILER_${CMAKE_CXX_COMPILER_ID}
-#define ${PROJECT_NAME_CAPS}_COMPILER_VERSION "${CMAKE_CXX_COMPILER_VERSION}"
-#define ${PROJECT_NAME_CAPS}_COMPILER_VERSION_MAJOR ${COMPILER_VERSION_MAJOR}
-#define ${PROJECT_NAME_CAPS}_COMPILER_VERSION_MINOR ${COMPILER_VERSION_MINOR}
-#define ${PROJECT_NAME_CAPS}_COMPILER_VERSION_PATCH ${COMPILER_VERSION_PATCH}
-#define ${PROJECT_NAME_CAPS}_COMPILER_VERSION_TWEAK ${COMPILER_VERSION_TWEAK}
+#define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_${CMAKE_CXX_COMPILER_ID}
+#define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_VERSION "${CMAKE_CXX_COMPILER_VERSION}"
+#define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_VERSION_MAJOR ${%%CPP_INIT_REPLACE%%_COMPILER_VERSION_MAJOR}
+#define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_VERSION_MINOR ${%%CPP_INIT_REPLACE%%_COMPILER_VERSION_MINOR}
+#define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_VERSION_PATCH ${%%CPP_INIT_REPLACE%%_COMPILER_VERSION_PATCH}
+#define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_VERSION_TWEAK ${%%CPP_INIT_REPLACE%%_COMPILER_VERSION_TWEAK}
 
-#if    defined(${PROJECT_NAME_CAPS}_COMPILER_AppleClang)                                                       \
-    || defined(${PROJECT_NAME_CAPS}_COMPILER_ARMClang)  || defined(${PROJECT_NAME_CAPS}_COMPILER_Clang)        \
-    || defined(${PROJECT_NAME_CAPS}_COMPILER_CrayClang) || defined(${PROJECT_NAME_CAPS}_COMPILER_FujitsuClang) \
-    || defined(${PROJECT_NAME_CAPS}_COMPILER_XLClang)   || defined(${PROJECT_NAME_CAPS}_COMPILER_IBMClang)
+#if    defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_AppleClang)                                                       \
+    || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_ARMClang)  || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_Clang)        \
+    || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_CrayClang) || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_FujitsuClang) \
+    || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_XLClang)   || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_IBMClang)
 
-#    define ${PROJECT_NAME_CAPS}_COMPILER_IS_CLANG_LIKE 1
+#    define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_IS_CLANG_LIKE 1
 #else
 
-#    define ${PROJECT_NAME_CAPS}_COMPILER_IS_CLANG_LIKE 0
+#    define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_IS_CLANG_LIKE 0
 
 #endif
 
-#if ${PROJECT_NAME_CAPS}_COMPILER_IS_CLANG_LIKE || defined(${PROJECT_NAME_CAPS}_COMPILER_GNU)
-#    define ${PROJECT_NAME_CAPS}_COMPILER_IS_GNU_LIKE 1
+#if ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_IS_CLANG_LIKE || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_GNU)
+#    define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_IS_GNU_LIKE 1
 #else
-#    define ${PROJECT_NAME_CAPS}_COMPILER_IS_GNU_LIKE 0
+#    define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_IS_GNU_LIKE 0
 #endif
 
-#if defined(${PROJECT_NAME_CAPS}_COMPILER_Intel) || defined(${PROJECT_NAME_CAPS}_COMPILER_IntelLLVM)
-#    define ${PROJECT_NAME_CAPS}_COMPILER_IS_ICC_LIKE 1
+#if defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_Intel) || defined(${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_IntelLLVM)
+#    define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_IS_ICC_LIKE 1
 #else
-#    define ${PROJECT_NAME_CAPS}_COMPILER_IS_ICC_LIKE 0
+#    define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_IS_ICC_LIKE 0
 #endif
 
-#ifdef ${PROJECT_NAME_CAPS}_COMPILER_MSVC
-#    define ${PROJECT_NAME_CAPS}_CXX_STD _MSVC_LANG
+#ifdef ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_MSVC
+#    define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_CXX_STD _MSVC_LANG
 #else
-#    define ${PROJECT_NAME_CAPS}_CXX_STD __cplusplus
+#    define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_CXX_STD __cplusplus
 #endif
 
-#if ${PROJECT_NAME_CAPS}_CXX_STD >= 202302L
-#   define ${PROJECT_NAME_CAPS}_STD_CXX23
-#   define ${PROJECT_NAME_CAPS}_HAS_STD_CXX23 1
-#   define ${PROJECT_NAME_CAPS}_HAS_STD_CXX20 1
-#   define ${PROJECT_NAME_CAPS}_HAS_STD_CXX17 1
-#   define ${PROJECT_NAME_CAPS}_HAS_STD_CXX14 1
-#   define ${PROJECT_NAME_CAPS}_HAS_STD_CXX11 1
-#   define ${PROJECT_NAME_CAPS}_HAS_STD_CXX03 1
-#   define ${PROJECT_NAME_CAPS}_HAS_STD_CXX98 1
-#elif ${PROJECT_NAME_CAPS}_CXX_STD >= 202002L
-#   define ${PROJECT_NAME_CAPS}_STD_CXX20
-#   define ${PROJECT_NAME_CAPS}_HAS_STD_CXX23 0
-#   define ${PROJECT_NAME_CAPS}_HAS_STD_CXX20 1
-#   define ${PROJECT_NAME_CAPS}_HAS_STD_CXX17 1
-#   define ${PROJECT_NAME_CAPS}_HAS_STD_CXX14 1
-#   define ${PROJECT_NAME_CAPS}_HAS_STD_CXX11 1
-#   define ${PROJECT_NAME_CAPS}_HAS_STD_CXX03 1
-#   define ${PROJECT_NAME_CAPS}_HAS_STD_CXX98 1
-#elif ${PROJECT_NAME_CAPS}_CXX_STD >= 201703L
-#   define ${PROJECT_NAME_CAPS}_STD_CXX17
-#   define ${PROJECT_NAME_CAPS}_HAS_STD_CXX23 0
-#   define ${PROJECT_NAME_CAPS}_HAS_STD_CXX20 0
-#   define ${PROJECT_NAME_CAPS}_HAS_STD_CXX17 1
-#   define ${PROJECT_NAME_CAPS}_HAS_STD_CXX14 1
-#   define ${PROJECT_NAME_CAPS}_HAS_STD_CXX11 1
-#   define ${PROJECT_NAME_CAPS}_HAS_STD_CXX03 1
-#   define ${PROJECT_NAME_CAPS}_HAS_STD_CXX98 1
+#if ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_CXX_STD >= 202302L
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_STD_CXX23
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX23 1
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX20 1
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX17 1
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX14 1
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX11 1
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX03 1
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX98 1
+#elif ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_CXX_STD >= 202002L
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_STD_CXX20
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX23 0
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX20 1
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX17 1
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX14 1
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX11 1
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX03 1
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX98 1
+#elif ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_CXX_STD >= 201703L
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_STD_CXX17
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX23 0
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX20 0
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX17 1
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX14 1
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX11 1
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX03 1
+#   define ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX98 1
 #else
 #   error "C++17 is required to compile this project"
 #endif
 
-namespace ${THIS_PROJECT_NAME} {
+namespace ${%%CPP_INIT_REPLACE%%_PROJECT_NAME} {
 
 namespace sys {
     enum struct Os : unsigned char {
@@ -116,10 +116,10 @@ namespace sys {
         WindowsPhone, WindowsStore, Xenix
     };
 
-    inline constexpr auto os = Os::${SYSTEM_NAME_SANITISED};
-    inline constexpr std::string_view os_str = "${SYSTEM_NAME_SANITISED}";
-    inline constexpr auto is_unix = ${PROJECT_NAME_CAPS}_SYSTEM_IS_UNIX != 0;
-    inline constexpr std::string_view version = ${PROJECT_NAME_CAPS}_SYSTEM_VERSION;
+    inline constexpr auto os = Os::${%%CPP_INIT_REPLACE%%_SYSTEM_NAME_SANITISED};
+    inline constexpr std::string_view os_str = "${%%CPP_INIT_REPLACE%%_SYSTEM_NAME_SANITISED}";
+    inline constexpr auto is_unix = ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_IS_UNIX != 0;
+    inline constexpr std::string_view version = ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_SYSTEM_VERSION;
 } // namespace sys
 
 namespace compiler {
@@ -133,16 +133,16 @@ namespace compiler {
 
     inline constexpr auto vendor = Vendor::${CMAKE_CXX_COMPILER_ID};
     inline constexpr std::string_view vendor_str = "${CMAKE_CXX_COMPILER_ID}";
-    inline constexpr auto is_clang_like = ${PROJECT_NAME_CAPS}_COMPILER_IS_CLANG_LIKE != 0;
-    inline constexpr auto is_gnu_like   = ${PROJECT_NAME_CAPS}_COMPILER_IS_GNU_LIKE != 0;
-    inline constexpr auto is_icc_like   = ${PROJECT_NAME_CAPS}_COMPILER_IS_ICC_LIKE != 0;
+    inline constexpr auto is_clang_like = ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_IS_CLANG_LIKE != 0;
+    inline constexpr auto is_gnu_like   = ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_IS_GNU_LIKE != 0;
+    inline constexpr auto is_icc_like   = ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_IS_ICC_LIKE != 0;
 
 namespace version {
-    inline constexpr std::string_view full = ${PROJECT_NAME_CAPS}_COMPILER_VERSION;
-    inline constexpr int major = ${PROJECT_NAME_CAPS}_COMPILER_VERSION_MAJOR;
-    inline constexpr int minor = ${PROJECT_NAME_CAPS}_COMPILER_VERSION_MINOR;
-    inline constexpr int patch = ${PROJECT_NAME_CAPS}_COMPILER_VERSION_PATCH;
-    inline constexpr int tweak = ${PROJECT_NAME_CAPS}_COMPILER_VERSION_TWEAK;
+    inline constexpr std::string_view full = ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_VERSION;
+    inline constexpr int major = ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_VERSION_MAJOR;
+    inline constexpr int minor = ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_VERSION_MINOR;
+    inline constexpr int patch = ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_VERSION_PATCH;
+    inline constexpr int tweak = ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_COMPILER_VERSION_TWEAK;
 } // namespace version
 
 } // namespace compiler
@@ -151,31 +151,31 @@ namespace lang {
     enum struct Std : unsigned char { Cxx98, Cxx03, Cxx11, Cxx14, Cxx17, Cxx20, Cxx23 };
 
     inline constexpr auto std =
-#if ${PROJECT_NAME_CAPS}_HAS_STD_CXX23
+#if ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX23
         Std::Cxx23
-#elif ${PROJECT_NAME_CAPS}_HAS_STD_CXX20
+#elif ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX20
         Std::Cxx20
-#elif ${PROJECT_NAME_CAPS}_HAS_STD_CXX17
+#elif ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX17
         Std::Cxx17
 #endif
     ;
 
     inline constexpr auto std_num =
-#if ${PROJECT_NAME_CAPS}_HAS_STD_CXX23
+#if ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX23
         23
-#elif ${PROJECT_NAME_CAPS}_HAS_STD_CXX20
+#elif ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX20
         20
-#elif ${PROJECT_NAME_CAPS}_HAS_STD_CXX17
+#elif ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX17
         17
 #endif
     ;
 
     inline constexpr std::string_view std_str =
-#if ${PROJECT_NAME_CAPS}_HAS_STD_CXX23
+#if ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX23
         "C++ 23"
-#elif ${PROJECT_NAME_CAPS}_HAS_STD_CXX20
+#elif ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX20
         "C++ 20"
-#elif ${PROJECT_NAME_CAPS}_HAS_STD_CXX17
+#elif ${%%CPP_INIT_REPLACE%%_PROJECT_NAME_CAPS}_HAS_STD_CXX17
         "C++ 17"
 #endif
     ;
@@ -191,6 +191,6 @@ namespace version {
 inline constexpr std::string_view name = "${PROJECT_NAME}";
 inline constexpr std::string_view description = "${PROJECT_DESCRIPTION}";
 inline constexpr std::string_view url = "${PROJECT_HOMEPAGE_URL}";
-}  // namespace ${THIS_PROJECT_NAME}
+}  // namespace ${%%CPP_INIT_REPLACE%%_PROJECT_NAME}
 
-#endif  // ${THIS_PROJECT_NAME}_CONFIG_HPP
+#endif  // ${%%CPP_INIT_REPLACE%%_PROJECT_NAME}_CONFIG_HPP

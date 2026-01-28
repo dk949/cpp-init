@@ -1,21 +1,12 @@
-include(${CMAKE_SOURCE_DIR}/cmake/misc.cmake)
-
-function (_enable_cache)
-    if (NOT ENABLE_CACHE)
-        return()
-    endif ()
-
-    find_program(cache_bin ${CACHE_PROGRAM})
-    if (cache_bin)
-        message(STATUS "${CACHE_PROGRAM} found and enabled")
+if (%%CPP_INIT_REPLACE%%_ENABLE_CACHE)
+    find_program(_%%cpp_init_replace%%_cache_bin ${%%CPP_INIT_REPLACE%%_CACHE_PROGRAM})
+    if (_%%cpp_init_replace%%_cache_bin)
+        message(STATUS "${%%CPP_INIT_REPLACE%%_CACHE_PROGRAM} found and enabled")
         set(CMAKE_CXX_COMPILER_LAUNCHER
-            ${cache_bin}
+            ${_%%cpp_init_replace%%_cache_bin}
             CACHE STRING "cmake compiler launcher"
         )
     else ()
-        message(WARNING "${CACHE_PROGRAM} is enabled but was not found. Not using it")
+        message(WARNING "${%%CPP_INIT_REPLACE%%_CACHE_PROGRAM} is enabled but was not found. Not using it")
     endif ()
-endfunction ()
-
-_enable_cache()
-unset_function(_enable_cache)
+endif ()

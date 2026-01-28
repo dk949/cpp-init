@@ -1,30 +1,28 @@
-#include <fmt/format.h>
-#include <project/config.hpp>
+#include "factorial.hpp"
 
-#include <source_location>
+#include <%%cpp_init_replace%%/fib.hpp>
 
-int main() {
-    fmt::print(R"({}: {}
+#include <print>
+#include <stdexcept>
+#include <string>
+#include <cstdlib>
 
-version v{}
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        std::println(stderr, "Wrong number of arguments, expected 1, got {}", argc - 1);
+        return 1;
+    }
+    auto const num = [arg = argv[1]]() {
+        try {
+            return std::stoll(arg);
+        } catch (std::logic_error const &e) {
+            std::println(stderr, "Could not parse command line argument: {}", e.what());
+            std::exit(1);  // NOLINT(concurrency-mt-unsafe)
+        }
+    }();
 
-Compiling on {} {} with {} {} compiler (using {})
+    std::println("{}! = {}", num, %%cpp_init_replace%%::factorial(num));
+    std::println("fib({}) = {}", num, %%cpp_init_replace%%::fib(num));
 
-Try editing the source code in {}
-
-Or adding a test in ./tests
-
-Find more info at {}/wiki
-)",
-        // NOTE: the `cpp_init` namespace will change to whatever you set the project name to in vcpkg.json
-        cpp_init::name,
-        cpp_init::description,
-        cpp_init::version::full,
-        cpp_init::sys::os_str,
-        cpp_init::sys::version,
-        cpp_init::compiler::vendor_str,
-        cpp_init::compiler::version::full,
-        cpp_init::lang::std_str,
-        std::source_location::current().file_name(),
-        cpp_init::url);
+    return 0;
 }

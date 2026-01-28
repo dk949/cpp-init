@@ -1,6 +1,11 @@
 #include "factorial.hpp"
 
-std::int64_t factorial(unsigned int i) {
-    if (i == 0 || i == 1) return 1;
-    return i * factorial(i - 1);
+namespace %%cpp_init_replace%% {
+long long factorial(long long n) {
+    long long out = 1;
+    for (long long i = 1; i <= n; ++i)
+        out *= i;
+
+    return out;
 }
+}  // namespace %%cpp_init_replace%%

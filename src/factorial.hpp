@@ -1,7 +1,9 @@
-#ifndef FACTORIAL_HPP
-#define FACTORIAL_HPP
-#include <cstdint>
+#ifndef %%CPP_INIT_REPLACE%%_FACTORIAL_HPP
+#define %%CPP_INIT_REPLACE%%_FACTORIAL_HPP
 
-std::int64_t factorial(unsigned int i);
+namespace %%cpp_init_replace%% {
+long long factorial(long long n);
+}  // namespace %%cpp_init_replace%%
 
-#endif  // FACTORIAL_HPP
+
+#endif  // %%CPP_INIT_REPLACE%%_FACTORIAL_HPP
