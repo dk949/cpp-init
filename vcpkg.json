@@ -1,5 +1,5 @@
 {
-  "name": "%%cpp_init_replace%%",
+  "name": "%%cpp_init_vcpkg_name%%",
   "version-string": "0.1.0",
   "description": "%%cpp_init_description%%",
   "dependencies": [
