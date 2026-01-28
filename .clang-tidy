@@ -18,6 +18,7 @@
 #   bugprone-stringview-nullptr
 #   bugprone-suspicious-string-compare
 #   bugprone-use-after-move
+#   bugprone-exception-escape
 #   cppcoreguidelines-owning-memory
 #   misc-confusable-identifiers
 #   misc-const-correctness
@@ -52,6 +53,7 @@
 #   readability-redundant-access-specifiers                # They can be used to subdivide a class declaration
 #   readability-static-accessed-through-instance           # Nothing wrong with this
 #   cppcoreguidelines-pro-bounds-array-to-pointer-decay    # This is fine
+#   cppcoreguidelines-pro-bounds-pointer-arithmetic        # Too restrictive
 
 Checks:
   'boost-use-to-string,
@@ -63,6 +65,7 @@ Checks:
   -bugprone-stringview-nullptr,
   -bugprone-suspicious-string-compare,
   -bugprone-use-after-move,
+  -bugprone-exception-escape,
   cert-dcl50-cpp,
   cert-dcl58-cpp,
   cert-env33-c,
@@ -92,6 +95,7 @@ Checks:
   -cppcoreguidelines-owning-memory,
   -cppcoreguidelines-use-default-member-init,
   -cppcoreguidelines-pro-bounds-array-to-pointer-decay,
+  -cppcoreguidelines-pro-bounds-pointer-arithmetic,
   google-*,
   -google-build-namespaces,
   -google-readability-avoid-underscore-in-googletest-name,
@@ -129,6 +133,7 @@ Checks:
   -readability-static-accessed-through-instance,
   -readability-uppercase-literal-suffix
   '
+
 WarningsAsErrors: ''
 HeaderFilterRegex: ''
 FormatStyle:     none
@@ -155,6 +160,9 @@ CheckOptions:
     value: std::int
   - key: google-runtime-int.TypeSuffix
     value: _t
+  - key: bugprone-assert-side-effect.AssertMacros
+    value: "assert,UT_ASSERT"
+
 
   # Naming convention
   - key: readability-identifier-naming.ConceptCase
