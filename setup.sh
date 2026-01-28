@@ -110,3 +110,4 @@ done
 sed -i "s/%%cpp_init_description%%/$desc/g" vcpkg.json
 sed -i "s|%%cpp_init_url%%|$url|g" vcpkg.json
 sed -i "s|%%cpp_init_vcpkg_name%%|$vcpkg_name|g" vcpkg.json
+mv include/cpp_init_replace/ "include/$name"
