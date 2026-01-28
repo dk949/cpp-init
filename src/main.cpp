@@ -21,8 +21,8 @@ int main(int argc, char *argv[]) {
         }
     }();
 
-    std::println("{}! = {}", num, %%cpp_init_replace%%::factorial(num));
-    std::println("fib({}) = {}", num, %%cpp_init_replace%%::fib(num));
+    std::println("{}! = {}", num, %%cpp_init_namespace%%::factorial(num));
+    std::println("fib({}) = {}", num, %%cpp_init_namespace%%::fib(num));
 
     return 0;
 }

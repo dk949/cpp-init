@@ -2,7 +2,7 @@
 
 #include <%%cpp_init_replace%%/fib.hpp>
 
-namespace %%cpp_init_replace%% {
+namespace %%cpp_init_namespace%% {
 long long fib(long long n) {
     long long last = 1;
     long long current = 1;
@@ -11,4 +11,4 @@ long long fib(long long n) {
     }
     return current;
 }
-}  // namespace %%cpp_init_replace%%
+}  // namespace %%cpp_init_namespace%%

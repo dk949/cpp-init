@@ -4,13 +4,14 @@ set -e
 this=$(realpath "$0")
 
 usage() {
-    echo "setup.sh [-n NAME] [-d DESCRIPTION] [-u URL]
+    echo "setup.sh [-n NAME] [-s NAMESPACE] [-d DESCRIPTION] [-u URL]
 
-    -n, --name NAME             Name of the project
-    -u, --url URL               URL of the project
-    -d, --desc DESCRIPTION      Description of the project
+    -n, --name NAME                 Name of the project
+    -s, --namespace NAMESPACE       Name of the project
+    -u, --url URL                   URL of the project
+    -d, --desc DESCRIPTION          Description of the project
 
-    -h, --help                  Print this message and exit" 1>&2
+    -h, --help                      Print this message and exit" 1>&2
     exit "$1"
 }
 
@@ -77,6 +78,11 @@ while [ $# -ne 0 ]; do
             [ -z "$name" ] && usage 1
             shift 2
             ;;
+        -s|--namespace)
+            namespace=$2
+            [ -z "$namespace" ] && usage 1
+            shift 2
+            ;;
         -u|--url)
             url=$2
             [ -z "$url" ] && usage 1
@@ -94,6 +100,9 @@ done
 def_name="my_project"
 get_var "$name" "$def_name" "Name" name "" "a-z0-9_"
 
+def_namespace=$name
+get_var "$namespace" "$def_namespace" "Namespace" namespace "" "a-z0-9_"
+
 def_url="https://github.com/$(git config user.name || echo "$USER")/$name"
 get_var "$url" "$def_url" "URL" url " \\\"'" ""
 
@@ -105,6 +114,7 @@ vcpkg_name=$(echo "$name" | tr '_' '-')
 for file in $(git ls-files); do :
     [ "$(realpath "$file")" = "$this" ] && continue
     sed -i "s/%%cpp_init_replace%%/$name/g" "$file"
+    sed -i "s/%%cpp_init_namespace%%/$namespace/g" "$file"
     sed -i "s/%%CPP_INIT_REPLACE%%/$upper_name/g" "$file"
 done
 sed -i "s/%%cpp_init_description%%/$desc/g" vcpkg.json

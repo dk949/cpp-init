@@ -1,9 +1,9 @@
 #ifndef %%CPP_INIT_REPLACE%%_FIB_HPP
 #define %%CPP_INIT_REPLACE%%_FIB_HPP
 
-namespace %%cpp_init_replace%% {
+namespace %%cpp_init_namespace%% {
 long long fib(long long n);
-}  // namespace %%cpp_init_replace%%
+}  // namespace %%cpp_init_namespace%%
 
 
 #endif  // %%CPP_INIT_REPLACE%%_FIB_HPP
