@@ -66,6 +66,11 @@ jobs:
         sudo apt update
         sudo apt install lcov
 
+    - name: Setup
+      shell: bash
+      working-directory: ${{ github.workspace }}
+      run: ./setup.sh --no-vcpkg -n test_ci_project -s ci -y
+
     - name: Cache vcpkg
       id: cache-vcpkg
       uses: actions/cache@v3
@@ -83,10 +88,6 @@ jobs:
         ./vcpkg/${{ steps.strings.outputs.vcpkg-setup-file }} -disableMetrics
         ./vcpkg/vcpkg install
 
-    - name: Setup
-      shell: bash
-      working-directory: ${{ github.workspace }}
-      run: ./setup.sh --no-vcpkg -n test_ci_project -s ci -y
 
     - name: Configure CMake
       run: >
