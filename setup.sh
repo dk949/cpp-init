@@ -140,6 +140,38 @@ sed -i "s|%%cpp_init_vcpkg_name%%|$vcpkg_name|g" vcpkg.json
 
 mv include/cpp_init_replace/ "include/$name"
 
+sed -i "s|https://github.com/dk949/cpp-init/|$url/|g" README.md
+sed -i "s/^# init cpp/# \\u$name/g" README.md
+sed -i "s/<PROJECT_NAME>/$upper_name/g" README.md
+sed -i "s/<project_name>/$name/g" README.md
+
+
+new_readme=$(awk \
+    -vdesc="$desc" \
+'
+/<!-- CPP_INIT_DESC_START -->/ {
+    start_desc=1
+    inside_desc=1
+}
+/<!-- CPP_INIT_SETUP_START -->/ {
+    inside_setup=1
+}
+!inside_desc && !inside_setup{print}
+start_desc{
+    print desc
+    start_desc=0
+}
+/<!-- CPP_INIT_DESC_END -->/ {
+    inside_desc=0
+}
+/<!-- CPP_INIT_SETUP_END -->/ {
+    inside_setup=0
+}
+' README.md)
+
+echo "$new_readme" > README.md
+
+
 if [ -z "$no_vcpkg" ]; then
     [ -d './vcpkg/' ] || git clone "https://github.com/Microsoft/vcpkg.git"
     [ -f './vcpkg/vcpkg' ] || ./vcpkg/bootstrap-vcpkg.sh -disableMetrics

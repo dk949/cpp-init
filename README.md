@@ -2,6 +2,7 @@
 
 [![CMake build and test](https://github.com/dk949/cpp-init/actions/workflows/cmake-multi-platform.yml/badge.svg)](https://github.com/dk949/cpp-init/actions/workflows/cmake-multi-platform.yml)
 
+<!-- CPP_INIT_DESC_START -->
 cmake boilerplate for a C++ project. Originally a fork of [cpp starter
 project](https://github.com/lefticus/cpp_starter_project).
 
@@ -11,6 +12,7 @@ project](https://github.com/lefticus/cpp_starter_project).
 
 > [!NOTE]
 > The minimum required standard is C++17 (default since GCC 11 and Clang 16).
+<!-- CPP_INIT_DESC_END -->
 
 ## Dependencies
 
@@ -31,14 +33,15 @@ project](https://github.com/lefticus/cpp_starter_project).
 
 ## Usage
 
+<!-- CPP_INIT_SETUP_START -->
 The project is setup as a template and needs to be setup before it can be used:
-
 
 ```sh
 ./setup.sh
 ```
 
 Run `setup.sh -h` for more options
+<!-- CPP_INIT_SETUP_END -->
 
 ### Configure cmake
 
@@ -61,7 +64,7 @@ cmake --build build --config Release
 ### Testing
 
 Tests are enabled by default in debug mode and disabled by default in release.
-They can be explicitly controlled with `-DBUILD_TESTING`.
+They can be explicitly controlled with `-D<PROJECT_NAME>_BUILD_TESTING`.
 
 ```sh
 ./build/bin/<project_name>_test
@@ -74,7 +77,7 @@ report.
 
 Coverage uses `lcov`. If `lcov` is not installed it tries to use `nix` to run
 `lcov`. If neither is found an error is thrown. Disable coverage  with
-`-DENABLE_COVERAGE=NO` (off by default in release mode).
+`-D<PROJECT_NAME>_ENABLE_COVERAGE=NO` (off by default in release mode).
 
 ```
 cmake --build build -t coverage_<project_name>_test
