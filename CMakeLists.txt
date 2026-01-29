@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 4.0)
+cmake_minimum_required(VERSION 3.31)
 include(cmake/setup_pkg.cmake)
 project(
     ${%%CPP_INIT_REPLACE%%_PROJECT_NAME}
