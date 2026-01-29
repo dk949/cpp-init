@@ -11,6 +11,9 @@ usage() {
     -u, --url URL                   URL of the project
     -d, --desc DESCRIPTION          Description of the project
 
+    -y, --yes                       Accept all defaults which were not specified
+                                    by other flags
+
     -h, --help                      Print this message and exit" 1>&2
     exit "$1"
 }
@@ -47,7 +50,7 @@ get_var() {
         return
     }
 
-    if [ -t 0 ]; then
+    if [ -z "$yes" ] && [ -t 0 ] && [ -t 1 ]; then
         echo "Enter the project $lower_prompt, leave empty for default ($default)"
         printf '\x1b[34m%s: \x1b[0m' "$prompt"
         read -r val
@@ -62,10 +65,10 @@ get_var() {
         else
             eval "$new_var=\$default"
         fi
-    else
-        echo "Warning: using default $prompt $default" 1>&2
-        eval "$new_var=\$default"
+        return
     fi
+    [ -z "$yes" ] && echo "Warning: using default $prompt $default" 1>&2
+    eval "$new_var=\$default"
 }
 
 while [ $# -ne 0 ]; do
@@ -92,6 +95,14 @@ while [ $# -ne 0 ]; do
             desc=$2
             [ -z "$desc" ] && usage 1
             shift 2
+            ;;
+        -y|--yes)
+            yes=1
+            shift
+            ;;
+        *)
+            echo "Unexpected argument $1" 1>&2
+            usage 1
             ;;
     esac
 done
