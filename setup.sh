@@ -177,3 +177,5 @@ if [ -z "$no_vcpkg" ]; then
     [ -f './vcpkg/vcpkg' ] || ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
     ./vcpkg/vcpkg install
 fi
+
+rm "$this"
