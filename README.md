@@ -79,6 +79,6 @@ Coverage uses `lcov`. If `lcov` is not installed it tries to use `nix` to run
 `lcov`. If neither is found an error is thrown. Disable coverage  with
 `-D<PROJECT_NAME>_ENABLE_COVERAGE=NO` (off by default in release mode).
 
-```
+```sh
 cmake --build build -t coverage_<project_name>_test
 ```
