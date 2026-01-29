@@ -23,6 +23,7 @@ include(cmake/macro_prefix.cmake)
 add_subdirectory(lib)
 add_subdirectory(src)
 add_subdirectory(project_config)
+include(cmake/install.cmake)
 
 if (%%CPP_INIT_REPLACE%%_BUILD_TESTING)
     add_subdirectory(tests)

@@ -7,10 +7,6 @@ set(%%CPP_INIT_REPLACE%%_OBJLIB_NAME ${%%CPP_INIT_REPLACE%%_PROJECT_NAME}_objlib
 set(%%CPP_INIT_REPLACE%%_TEST_NAME ${%%CPP_INIT_REPLACE%%_PROJECT_NAME}_test CACHE STRING "Name of the test executable")
 set(%%CPP_INIT_REPLACE%%_DOXYFILE_SUFFIX ${%%CPP_INIT_REPLACE%%_PROJECT_NAME}_docs CACHE STRING "Documentation target")
 
-# Artifacts
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib CACHE STRING "archive location")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib CACHE STRING "library location")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin CACHE STRING "executable location")
 
 
 set(_%%cpp_init_replace%%_usage "Can be a boolean or a list of build types (semicolon separated).")
@@ -57,6 +53,11 @@ if(PROJECT_IS_TOP_LEVEL)
     # Compiler colours
     option(CMAKE_COLOR_DIAGNOSTICS "use colour output for compilation" ON)
     option(CMAKE_CXX_SCAN_FOR_MODULES "" OFF)
+
+    # Artifacts
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib CACHE STRING "archive location")
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib CACHE STRING "library location")
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin CACHE STRING "executable location")
 endif()
 
 unset(_%%cpp_init_replace%%_usage)

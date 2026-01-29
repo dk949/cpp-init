@@ -1,3 +1,4 @@
+include(GNUInstallDirs)
 %%cpp_init_replace%%_link_compile_commands(compile_commands.json)
 
 add_library(${%%CPP_INIT_REPLACE%%_LIB_NAME} STATIC
@@ -7,7 +8,8 @@ add_library(${%%CPP_INIT_REPLACE%%_LIB_NAME} STATIC
 target_include_directories(
     ${%%CPP_INIT_REPLACE%%_LIB_NAME}
     PUBLIC
-        ${PROJECT_SOURCE_DIR}/include
+        $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
     PRIVATE
         ${PROJECT_BINARY_DIR}/project_config/include
 )
@@ -17,3 +19,7 @@ target_include_directories(
 %%cpp_init_replace%%_target_enable_cppcheck(${%%CPP_INIT_REPLACE%%_LIB_NAME})
 %%cpp_init_replace%%_target_enable_clang_tidy(${%%CPP_INIT_REPLACE%%_LIB_NAME})
 %%cpp_init_replace%%_target_macro_prefix(${%%CPP_INIT_REPLACE%%_LIB_NAME} PRIVATE)
+
+if (NOT TARGET ${PROJECT_NAME}::${%%CPP_INIT_REPLACE%%_LIB_NAME})
+    add_library(${PROJECT_NAME}::${%%CPP_INIT_REPLACE%%_LIB_NAME} ALIAS ${%%CPP_INIT_REPLACE%%_LIB_NAME})
+endif()

@@ -1,4 +1,4 @@
-include(${CMAKE_SOURCE_DIR}/cmake/helpers.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/helpers.cmake)
 
 function (%%cpp_init_replace%%_target_macro_prefix target acc)
     if (NOT %%CPP_INIT_REPLACE%%_ENABLE_MACRO_PREFIX)
