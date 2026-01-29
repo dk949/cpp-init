@@ -19,6 +19,22 @@
         "%%CPP_INIT_REPLACE%%_ENABLE_DOXYGEN": true,
         "%%CPP_INIT_REPLACE%%_ENABLE_MACRO_PREFIX": "Release"
       }
+    },
+    {
+      "name": "ci",
+      "displayName": "CI ",
+      "description": "Preset for CI",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": false,
+        "%%CPP_INIT_REPLACE%%_BUILD_TESTING": true,
+        "%%CPP_INIT_REPLACE%%_ENABLE_CACHE": false,
+        "%%CPP_INIT_REPLACE%%_ENABLE_SANITIZERS": true,
+        "%%CPP_INIT_REPLACE%%_ENABLE_CPPCHECK": true,
+        "%%CPP_INIT_REPLACE%%_ENABLE_CLANG_TIDY": true,
+        "%%CPP_INIT_REPLACE%%_ENABLE_DOXYGEN": false,
+        "%%CPP_INIT_REPLACE%%_ENABLE_MACRO_PREFIX": "Release",
+        "%%CPP_INIT_REPLACE%%_WARNINGS_AS_ERRORS": true
+      }
     }
   ]
 }

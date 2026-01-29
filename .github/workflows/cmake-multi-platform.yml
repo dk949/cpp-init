@@ -83,6 +83,11 @@ jobs:
         ./vcpkg/${{ steps.strings.outputs.vcpkg-setup-file }} -disableMetrics
         ./vcpkg/vcpkg install
 
+    - name: Setup
+      shell: bash
+      working-directory: ${{ github.workspace }}
+      run: ./setup.sh --no-vcpkg -n test_ci_project -s ci -y
+
     - name: Configure CMake
       run: >
         cmake --preset ci
@@ -90,7 +95,7 @@ jobs:
         -DCMAKE_CXX_COMPILER=${{ matrix.cxx_compiler }}
         -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
         -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
-        -DENABLE_COVERAGE=${{ steps.strings.outputs.enable_coverage }}
+        -DTEST_CI_PROJECT_ENABLE_COVERAGE=${{ steps.strings.outputs.enable_coverage }}
         -S ${{ github.workspace }}
 
     - name: Build
@@ -105,3 +110,10 @@ jobs:
       if:  steps.strings.outputs.enable_coverage  == 'ON'
       working-directory: ${{ steps.strings.outputs.build-output-dir }}/tests
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }} -t coverage_cpp_init_test
+
+    - name: Install
+      run: |
+        cmake --install ${{ steps.strings.outputs.build-output-dir } \
+              --config ${{ matrix.build_type }} \
+              --prefix ${{ github.workspace }}/out
+        ls -R ${{ github.workspace }}/out
