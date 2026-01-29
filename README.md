@@ -5,10 +5,12 @@
 cmake boilerplate for a C++ project. Originally a fork of [cpp starter
 project](https://github.com/lefticus/cpp_starter_project).
 
-_NOTE 1:_ This project is meant specifically for C++, it will likely take a lot of
-work to adapt it for use with C (or any other language).
+> [!NOTE]
+> This project is meant specifically for C++, it will likely take a lot
+> of work to adapt it for use with C (or any other language).
 
-_NOTE 2:_ The minimum required standard is C++17 (default since GCC 11 and Clang 16).
+> [!NOTE]
+> The minimum required standard is C++17 (default since GCC 11 and Clang 16).
 
 ## Dependencies
 
@@ -29,21 +31,19 @@ _NOTE 2:_ The minimum required standard is C++17 (default since GCC 11 and Clang
 
 ## Usage
 
-Run the following commands to get started, more info available in the
-[wiki](https://github.com/dk949/cpp-init/wiki).
+The project is setup as a template and needs to be setup before it can be used:
 
-### Configure vcpkg
 
 ```sh
-git clone "https://github.com/Microsoft/vcpkg.git"
-./vcpkg/bootstrap-vcpkg.sh -disableMetrics
-./vcpkg/vcpkg install
+./setup.sh
 ```
+
+Run `setup.sh -h` for more options
 
 ### Configure cmake
 
 ```sh
-cmake --preset make # Check `cmake --list-presets` for other preset options
+cmake --preset default
 ```
 
 ### Build the default target
@@ -52,15 +52,19 @@ cmake --preset make # Check `cmake --list-presets` for other preset options
 cmake --build build
 ```
 
+### Build the release target
+
+```sh
+cmake --build build --config Release
+```
+
 ### Testing
 
 Tests are enabled by default in debug mode and disabled by default in release.
 They can be explicitly controlled with `-DBUILD_TESTING`.
 
-```
-./build/bin/cpp_init_test
-#or
-ctest --test-dir build/tests
+```sh
+./build/bin/<project_name>_test
 ```
 
 ### Coverage
@@ -73,5 +77,5 @@ Coverage uses `lcov`. If `lcov` is not installed it tries to use `nix` to run
 `-DENABLE_COVERAGE=NO` (off by default in release mode).
 
 ```
-cmake --build build -t coverage
+cmake --build build -t coverage_<project_name>_test
 ```
