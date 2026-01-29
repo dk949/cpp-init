@@ -67,7 +67,7 @@ Tests are enabled by default in debug mode and disabled by default in release.
 They can be explicitly controlled with `-D<PROJECT_NAME>_BUILD_TESTING`.
 
 ```sh
-./build/bin/<project_name>_test
+./build/bin/Debug/<project_name>_test
 ```
 
 ### Coverage
