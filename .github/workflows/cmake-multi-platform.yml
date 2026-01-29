@@ -110,7 +110,7 @@ jobs:
     - name: Test + Coverage
       if:  steps.strings.outputs.enable_coverage  == 'ON'
       working-directory: ${{ steps.strings.outputs.build-output-dir }}/tests
-      run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }} -t coverage_cpp_init_test
+      run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }} -t coverage_test_ci_project_test
 
     - name: Install
       run: |
