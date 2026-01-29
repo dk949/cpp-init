@@ -138,6 +138,7 @@ sed -i "s/%%cpp_init_description%%/$desc/g" vcpkg.json
 sed -i "s|%%cpp_init_url%%|$url|g" vcpkg.json
 sed -i "s|%%cpp_init_vcpkg_name%%|$vcpkg_name|g" vcpkg.json
 
+rm -rf "include/$name"
 mv include/cpp_init_replace/ "include/$name"
 
 sed -i "s|https://github.com/dk949/cpp-init/|$url/|g" README.md
