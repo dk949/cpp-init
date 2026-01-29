@@ -179,3 +179,36 @@ if [ -z "$no_vcpkg" ]; then
 fi
 
 rm "$this"
+
+if [ -t 0 ] && [ -t 1 ]; then
+    printf '\n\n\x1b[34m'
+    {
+        printf IF9fX18gICAgICAgXyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBf
+        printf ICAgICAgXyAgICAgICBfIAovIF9fX3wgIF9fX3wgfF8gXyAgIF8gXyBfXyAgICAgX19fIF9fXyAg
+        printf XyBfXyBfX18gIF8gX18gfCB8IF9fX3wgfF8gX19ffCB8ClxfX18gXCAvIF8gXCBfX3wgfCB8IHwg
+        printf J18gXCAgIC8gX18vIF8gXHwgJ18gYCBfIFx8ICdfIFx8IHwvIF8gXCBfXy8gXyBcIHwKIF9fXykg
+        printf fCAgX18vIHxffCB8X3wgfCB8XykgfCB8IChffCAoXykgfCB8IHwgfCB8IHwgfF8pIHwgfCAgX18v
+        printf IHx8ICBfXy9ffAp8X19fXy8gXF9fX3xcX198XF9fLF98IC5fXy8gICBcX19fXF9fXy98X3wgfF98
+        printf IHxffCAuX18vfF98XF9fX3xcX19cX19fKF8pCiAgICAgICAgICAgICAgICAgICAgIHxffCAgICAg
+        printf ICAgICAgICAgICAgICAgICAgICB8X3wgICAgICAgICAgICAgICAgICAgICAK
+    } | base64 -d
+    printf '\x1b[0m\n'
+
+    echo "*** Configuration ***
+
+    Name        : $name
+    Namespace   : $namespace
+    URL         : $url
+    Description : $desc
+
+"
+
+    printf '\x1b[32mTo restart the setup process, run:
+\t\x1b[38;5;250mgit restore .
+
+\x1b[32mTo start new project with these settings, run:
+\t\x1b[38;5;250mrm -rf .git && git init && git add . && git commit -m init
+
+\x1b[0m\n'
+
+fi
