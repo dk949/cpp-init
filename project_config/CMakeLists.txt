@@ -28,4 +28,4 @@ else ()
     set(%%CPP_INIT_REPLACE%%_COMPILER_VERSION_MAJOR 0)
 endif ()
 
-configure_file("config.hpp.in" "${PROJECT_BINARY_DIR}/project_config/include/project/config.hpp" ESCAPE_QUOTES)
+configure_file("config.hpp.in" "${PROJECT_BINARY_DIR}/project_config/include/%%cpp_init_replace%%/config.hpp" ESCAPE_QUOTES)

@@ -7,7 +7,6 @@ target_include_directories(
     ${%%CPP_INIT_REPLACE%%_OBJLIB_NAME}
     PUBLIC
         ${PROJECT_SOURCE_DIR}/include
-    PRIVATE
         ${PROJECT_BINARY_DIR}/project_config/include
 )
 
