@@ -113,7 +113,7 @@ jobs:
 
     - name: Install
       run: |
-        cmake --install ${{ steps.strings.outputs.build-output-dir } \
+        cmake --install ${{ steps.strings.outputs.build-output-dir }} \
               --config ${{ matrix.build_type }} \
               --prefix ${{ github.workspace }}/out
         ls -R ${{ github.workspace }}/out
