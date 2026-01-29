@@ -6,15 +6,17 @@ this=$(realpath "$0")
 usage() {
     echo "setup.sh [-n NAME] [-s NAMESPACE] [-d DESCRIPTION] [-u URL]
 
-    -n, --name NAME                 Name of the project
-    -s, --namespace NAMESPACE       Name of the project
-    -u, --url URL                   URL of the project
-    -d, --desc DESCRIPTION          Description of the project
+    -n, --name NAME                 Name of the project.
+    -s, --namespace NAMESPACE       Name of the project.
+    -u, --url URL                   URL of the project.
+    -d, --desc DESCRIPTION          Description of the project.
 
     -y, --yes                       Accept all defaults which were not specified
-                                    by other flags
+                                    by other flags.
 
-    -h, --help                      Print this message and exit" 1>&2
+        --no-vcpkg                  Do not setup vcpkg.
+
+    -h, --help                      Print this message and exit." 1>&2
     exit "$1"
 }
 
@@ -100,6 +102,10 @@ while [ $# -ne 0 ]; do
             yes=1
             shift
             ;;
+        --no-vcpkg)
+            no_vcpkg=1
+            shift
+            ;;
         *)
             echo "Unexpected argument $1" 1>&2
             usage 1
@@ -134,12 +140,8 @@ sed -i "s|%%cpp_init_vcpkg_name%%|$vcpkg_name|g" vcpkg.json
 
 mv include/cpp_init_replace/ "include/$name"
 
-if [ ! -d './vcpkg/' ]; then
-    git clone "https://github.com/Microsoft/vcpkg.git"
+if [ -z "$no_vcpkg" ]; then
+    [ -d './vcpkg/' ] || git clone "https://github.com/Microsoft/vcpkg.git"
+    [ -f './vcpkg/vcpkg' ] || ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
+    ./vcpkg/vcpkg install
 fi
-
-if [ ! -f './vcpkg/vcpkg' ]; then
-    ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
-fi
-
-./vcpkg/vcpkg install
