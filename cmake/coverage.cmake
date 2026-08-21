@@ -28,6 +28,14 @@ function (%%cpp_init_replace%%_target_add_coverage target access)
     )
 
     if (%%CPP_INIT_REPLACE%%_CREATE_TARGET)
+
+        add_custom_command(
+            TARGET ${target} PRE_LINK
+            COMMENT "Removing stale .gcda coverage data"
+            COMMAND find ${PROJECT_BINARY_DIR} -type f -name "*.gcda" -delete
+            VERBATIM
+        )
+
         %%cpp_init_replace%%_find_program_nix(_%%cpp_init_replace%%_lcov_exe lcov)
         if(${_%%cpp_init_replace%%_lcov_exe} STREQUAL "_%%cpp_init_replace%%_lcov_exe-NOTFOUND")
             message(WARNING "Coverage was requested, but neither lcov nor nix were found")
